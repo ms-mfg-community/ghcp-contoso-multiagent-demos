@@ -1,0 +1,163 @@
+# Lab Setup
+
+In this lab you will fork the repository, configure your development environment, and enable GitHub Copilot custom agents.
+
+> Duration: 15-20 minutes
+
+References:
+- [Fork a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+- [GitHub Copilot documentation](https://docs.github.com/en/copilot)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+
+## Prerequisites
+
+Before starting this lab, ensure you have the following installed:
+
+| Requirement | Purpose |
+|-------------|---------|
+| VS Code | Primary IDE with GitHub Copilot integration |
+| GitHub Copilot subscription | Required for agent orchestration features |
+| Node.js 18+ | Required for MCP server execution |
+| .NET 8 SDK | Required for the Contoso University application |
+| Git | Version control |
+
+## Fork and Clone the Repository
+
+1. Fork the current repository [ghcp-contoso-university-lab](https://github.com/YOUR_ORG/ghcp-contoso-university-lab)
+
+2. Clone your forked repository:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/ghcp-contoso-university-lab.git
+   cd ghcp-contoso-university-lab
+   git checkout local-testing
+   ```
+
+3. Verify the `.github/` directory structure exists:
+   ```
+   .github/
+   ├── agents/           # Custom Copilot agent definitions
+   ├── instructions/     # Contextual instruction files
+   ├── prompts/          # Reusable prompt templates
+   ├── skills/           # Reference knowledge for agents
+   └── copilot-instructions.md
+   ```
+
+## Enable GitHub Copilot Custom Agents
+
+1. Open VS Code and ensure the GitHub Copilot extension is installed and active
+
+2. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+
+3. Search for "GitHub Copilot: Enable Custom Agents" and enable the feature
+
+4. Verify agents are loaded:
+   - Open GitHub Copilot Chat
+   - Type `@` to see available agents
+   - You should see the custom agents defined in `.github/agents/`
+
+## Configure MCP Servers (Optional)
+
+The `mcp.json` file in the repository root configures Model Context Protocol servers for enhanced documentation access.
+
+1. Copy the MCP configuration to your VS Code settings:
+   ```json
+   {
+     "mcpServers": {
+       "microsoft-learn": {
+         "url": "https://learn.microsoft.com/api/mcp"
+       },
+       "context7": {
+         "command": "npx",
+         "args": ["-y", "@upstash/context7-mcp"]
+       }
+     }
+   }
+   ```
+
+2. Restart VS Code to apply the MCP configuration
+
+3. Verify MCP servers are connected in the Copilot Chat panel
+
+## Verify Your Setup
+
+Run through this checklist to confirm everything is working:
+
+- [ ] Repository cloned successfully
+- [ ] `.github/agents/` directory contains agent definitions
+- [ ] VS Code opened with GitHub Copilot extension active
+- [ ] Custom agents visible in Copilot Chat (type `@` to check)
+- [ ] .NET project builds: `dotnet build`
+- [ ] (Optional) MCP servers connected
+
+## Track Your Progress
+
+Create a GitHub Issue in your forked repository to track your lab progress:
+
+- **Title:** Lab Progress - Multi-Agent Orchestration
+- **Content:**
+```markdown
+### Lab Progress Tracker
+
+- [x] Lab Setup
+- [ ] Lab 01: Introduction to Multi-Agent Orchestration
+- [ ] Lab 02: Creating Brownfield Epics
+- [ ] Lab 03: Writing Implementation Stories
+- [ ] Lab 04: Executing Stories with Agents
+```
+
+## Troubleshooting
+
+<details>
+<summary>Custom agents not appearing in Copilot Chat</summary>
+
+1. Ensure you have a GitHub Copilot subscription that supports custom agents
+2. Check that the `.github/agents/` directory exists and contains `.agent.md` files
+3. Restart VS Code and try again
+4. Check VS Code's Output panel for Copilot-related errors
+
+</details>
+
+<details>
+<summary>MCP servers not connecting</summary>
+
+1. Verify Node.js is installed: `node --version`
+2. Ensure npx is available: `npx --version`
+3. Check your network connection
+4. Review the VS Code Output panel for MCP-related errors
+
+</details>
+
+<details>
+<summary>.NET build fails</summary>
+
+1. Verify .NET 8 SDK is installed: `dotnet --list-sdks`
+2. Restore packages: `dotnet restore`
+3. Check for any missing dependencies in the error output
+
+</details>
+
+---
+
+## Lab File Naming Convention
+
+Labs in this repository follow a consistent naming pattern:
+
+| File | Description |
+|------|-------------|
+| `setup.md` | This setup guide |
+| `lab01.md` | Lab 01: Introduction to Multi-Agent Orchestration |
+| `lab02.md` | Lab 02: Creating Brownfield Epics |
+| `lab03.md` | Lab 03: Writing Implementation Stories |
+| `lab04.md` | Lab 04: Executing Stories with Agents |
+
+Each lab file includes:
+- Duration estimate
+- Learning objectives
+- Prerequisites (completed labs)
+- Step-by-step instructions
+- Verification checkpoints
+- References section
+
+---
+
+[Next: Lab 01 - Introduction to Multi-Agent Orchestration](lab01.md)

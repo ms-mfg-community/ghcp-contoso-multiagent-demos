@@ -1,0 +1,17 @@
+{
+  "description": "MCP Server Configuration for GitHub Copilot Multi-Agent Orchestration Lab",
+  "instructions": "Copy the server configuration below to your MCP client settings. See README.md for client-specific setup.",
+  "servers": {
+    "microsoft-learn": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp",
+      "description": "Official Microsoft Learn MCP Server - provides access to microsoft_docs_search, microsoft_docs_fetch, and microsoft_code_sample_search tools"
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "description": "Context7 MCP Server - provides access to resolve-library-id and get-library-docs tools for third-party library documentation"
+    }
+  }
+}
