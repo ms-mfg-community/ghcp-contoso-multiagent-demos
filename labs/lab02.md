@@ -335,7 +335,51 @@ insight through calculated GPA display.
 
 </details>
 
-### Step 3: Save Your Epic
+### Step 3: Validate Your Stories
+
+Before saving, validate the stories Scribe created against the project's story writing standards:
+
+```
+@Scribe Evaluate Story S01 (Grade Update UI) against our story writing standards.
+Use the rubric at docs/standards/story-writing-standards-rubric.md.
+Score each criterion and provide an overall verdict.
+```
+
+**Quality Gate:**
+- Stories should score **7+** overall to be implementation-ready
+- If any criterion scores below 6, refine that aspect before proceeding
+- Pay special attention to **Scope Clarity** and **Technical Detail Sufficiency**
+
+> **Reference**: The full evaluation criteria are in:
+> - Rubric: `docs/standards/story-writing-standards-rubric.md`
+> - Skill: `.github/skills/story-writing-standards/SKILL.md`
+> - Prompt: `.github/prompts/grade-story.prompt.md`
+
+<details>
+<summary>Example Story Evaluation Output</summary>
+
+```markdown
+## Story Evaluation: S01 - Grade Update UI
+
+| Criterion | Score | Notes |
+|-----------|-------|-------|
+| AC Quality | 7/10 | ACs are testable but missing error cases |
+| Testability | 7/10 | Can derive happy path tests; edge cases implied |
+| Scope Clarity | 8/10 | Clear boundaries; out-of-scope items listed |
+| Technical Detail | 6/10 | View file specified; JavaScript approach unclear |
+| Pattern Alignment | 8/10 | Follows existing CRUD patterns |
+| **Overall** | **7.2/10** | |
+
+**Verdict**: READY FOR DEV
+
+**Suggested Refinement**:
+- Add AC for error handling: "When grade update fails, display error message"
+- Specify JavaScript approach: "Use existing jQuery patterns from Edit view"
+```
+
+</details>
+
+### Step 4: Save Your Epic
 
 Create the epic file in your project:
 
@@ -401,6 +445,28 @@ The story should ensure:
 
 ---
 
+### Multi-Session Epic Work
+
+Epic creation often spans multiple sessions. If you need to pause work:
+
+1. Use the handoff prompt to preserve context:
+   ```
+   @Sage Create a handoff document for the Grade Management epic.
+   Use the template at docs/handoffs/handoff-template.md.
+
+   Current state:
+   - Scout analysis complete
+   - Scribe created 4 stories
+   - Stories S01, S02 validated (READY FOR DEV)
+   - Stories S03, S04 need technical detail refinement
+   ```
+
+2. Save the handoff to `docs/handoffs/`
+
+> **Reference**: `.github/prompts/create-handoff.prompt.md` provides the full handoff creation workflow.
+
+---
+
 ## Summary
 
 In this lab, you learned:
@@ -411,7 +477,9 @@ In this lab, you learned:
 - **Epic structure** includes Overview, Business Value, Stories, and Definition of Done
 - **Scribe** transforms technical findings into structured, actionable documentation
 - **Sequential workflows** (Scout → Scribe) use each agent's strengths in the right order
+- **Story validation** ensures stories meet quality standards before implementation
+- **Handoff documents** preserve context when epic work spans multiple sessions
 
-**Key takeaway:** The quality of your epic depends on the quality of your analysis. Scout provides the foundation; Scribe builds the structure.
+**Key takeaway:** The quality of your epic depends on the quality of your analysis. Scout provides the foundation; Scribe builds the structure. Validate stories before considering them implementation-ready.
 
 **Next:** In Lab 3, you'll break down the epic into detailed user stories with acceptance criteria.

@@ -38,6 +38,10 @@ In sequential orchestration, agents work one after another. Each agent completes
 
 **Example:** Scout analyzes the codebase → Scribe writes user stories based on findings → Builder implements the stories.
 
+> **See it in action:** [Sequential Workflow Example](../docs/workflows/sequential-workflow-example.md) demonstrates this pipeline implementing a complete feature, including quality gates at each step.
+
+**Quality Gates:** Between pipeline stages, use quality verification to catch issues early. The [coding-standards-grading](.github/skills/coding-standards-grading/SKILL.md) and [story-writing-standards](.github/skills/story-writing-standards/SKILL.md) skills provide rubrics for validating code and user stories before proceeding.
+
 ### Parallel Task Execution
 
 In parallel orchestration, multiple agents work simultaneously on independent tasks.
@@ -69,8 +73,8 @@ In parallel orchestration, multiple agents work simultaneously on independent ta
 Consider this scenario: You need to modernize a legacy .NET application. The work involves:
 1. Analyzing the current codebase structure
 2. Identifying technical debt
-3. Writing migration user stories
-4. Creating API documentation
+3. Writing migration stories
+4. Creating existing API documentation
 
 **Question:** Which tasks could run in parallel, and which must be sequential?
 
@@ -78,16 +82,14 @@ Consider this scenario: You need to modernize a legacy .NET application. The wor
 <summary>Answer</summary>
 
 **Sequential (must happen in order):**
-- Analysis (1) → Writing user stories (3): You need to understand the codebase before you can write stories about changing it.
-- Analysis (1) → Technical debt identification (2): You need to explore the code to find the debt.
+- (1) Analysis → (2)(4) → (3) Writing migration stories. You need to understand the codebase before you can identify technical debt and create existing API documentation. Furthermore, you must know the technical debt you want to address and API's that require migrating in order to write all of your migration stories.
 
 **Could be parallel (after analysis completes):**
-- Writing user stories (3) and Creating API documentation (4): These are independent documentation tasks that don't depend on each other.
-- Technical debt identification (2) and Creating API documentation (4): These examine different aspects of the codebase.
+- (2) Identifying technical debt and (4) Creating existing API documentation These are independent documentation tasks that don't depend on each other.
 
 **Optimal orchestration:**
 ```
-Sequential: Analysis → [Parallel: Tech Debt + User Stories + Documentation]
+Analysis → [Parallel: Tech Debt + Documentation] → Migration Stories
 ```
 
 </details>
@@ -114,7 +116,7 @@ In a single-session workflow, you complete the entire task in one continuous con
 - Single logical unit of work
 - You have time for uninterrupted focus
 
-**Example:** "Analyze the Student.cs model and suggest three improvements" — Scout can complete this in one session.
+**Example:** "Analyze the Student.cs model. Compare the implementation against our models coding standards rubric located at ${path}. Suggest at least 3 improvements per category that recieves less than a 6/10. If all categories pass then merely output 'Model meets coding standards'" — Scout can complete this in one session.
 
 ### Multi-Session Workflows
 
@@ -135,8 +137,9 @@ In a multi-session workflow, work spans multiple conversations. This requires ex
 **Context Preservation Strategies:**
 1. **Session notes:** Document decisions, findings, and next steps
 2. **Artifact files:** Write analysis to files that persist between sessions
-3. **Handoff prompts:** Structured summaries agents can consume
+3. **Handoff prompts:** Structured summaries agents can consume — use the [/create-handoff prompt](../.github/prompts/create-handoff.prompt.md) to generate consistent handoff documents
 4. **Progress tracking:** Checklists, story files, or project boards
+5. **Quality gates:** Verify work meets standards before proceeding — use grading skills to validate code and stories
 
 **Example multi-session workflow:**
 
@@ -146,6 +149,8 @@ In a multi-session workflow, work spans multiple conversations. This requires ex
 | 2 | Scribe | Write user stories | `docs/stories/` |
 | 3 | Builder | Implement first story | Code changes + PR |
 | 4 | Sage | Write documentation | `docs/api-guide.md` |
+
+> **See it in action:** [Multi-Session Workflow Example](../docs/workflows/multi-session-workflow-example.md) walks through a complete 4-session implementation with handoff documents between each session.
 
 ### Choosing the Right Pattern
 
@@ -181,7 +186,265 @@ For each scenario, decide whether single-session or multi-session is more approp
 
 ---
 
-## 1.3 Exploring GitHub Copilot Custom Agents
+## 1.3 Orchestration Patterns
+
+Beyond deciding between sequential and parallel execution, you also need to decide *who* coordinates the workflow—you or an agent.
+
+### Human-Driven vs. Agent-Driven Orchestration
+
+**Human-Driven Orchestration** (what this lab primarily teaches):
+- You decide which agent to invoke and when
+- You interpret results and determine next steps
+- You manage context between sessions manually
+- You apply quality gates and make judgment calls
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              Human-Driven Orchestration                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│      YOU (Orchestrator)                                          │
+│        │                                                         │
+│        ├──▶ @Scout "Analyze the codebase"                       │
+│        │         └──▶ Returns analysis                          │
+│        │    [You review, decide what matters]                   │
+│        │                                                         │
+│        ├──▶ @Scribe "Create stories based on analysis"          │
+│        │         └──▶ Returns stories                           │
+│        │    [You validate, refine, approve]                     │
+│        │                                                         │
+│        ├──▶ @Builder "Implement this story"                     │
+│        │         └──▶ Returns code                              │
+│        │    [You review, test, iterate]                         │
+│        │                                                         │
+│        └──▶ @Sage "Document what we did"                        │
+│                  └──▶ Returns docs                              │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Agent-Driven Orchestration** (using an orchestrator agent):
+- An orchestrator agent (Maestro) proposes workflow structure
+- It decomposes goals into phases and identifies parallel opportunities
+- It suggests quality gates—but you still approve and verify
+- Best for structured, deterministic workflows where the path is clear
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              Agent-Driven Orchestration                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│      YOU ──▶ @Maestro "Plan the grade management feature"       │
+│                │                                                 │
+│                ▼                                                 │
+│         ┌─────────────┐                                         │
+│         │  Maestro    │ (Produces workflow plan)                │
+│         │  - Phases   │                                         │
+│         │  - Prompts  │                                         │
+│         │  - Gates    │                                         │
+│         └─────────────┘                                         │
+│                │                                                 │
+│                ▼                                                 │
+│         YOU execute the plan, invoking agents as directed       │
+│         YOU verify quality gates and make go/no-go decisions    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Each Pattern
+
+| Factor | Human-Driven | Agent-Driven |
+|--------|--------------|--------------|
+| **Best for** | Complex work requiring judgment, nuanced decisions, novel problems | Structured, repeatable, deterministic workflows |
+| **Control** | Maximum—you decide everything | Agent proposes, you approve and execute |
+| **Quality gates** | You review and decide | Agent suggests criteria, you verify |
+| **Flexibility** | High—pivot anytime based on discoveries | Follows structured plan |
+| **Oversight** | Built-in—you're in the loop | You must actively insert yourself |
+
+**Use human-driven orchestration when:**
+- Work requires nuanced judgment or domain expertise
+- Quality gates need human review (code review, stakeholder approval)
+- The problem is novel or exploratory
+- Decisions have significant consequences
+- You're learning or need to understand the details
+- Requirements may change based on what you discover
+
+**Use agent-driven orchestration when:**
+- The workflow is well-understood and repeatable
+- You want a consistent structure across similar projects
+- The path from goal to completion is deterministic
+- You need help identifying parallel execution opportunities
+- You want a starting plan to customize
+
+> **Key insight**: Agent-driven orchestration produces a *plan*—you still execute it, verify quality gates, and make decisions. The orchestrator agent doesn't replace your judgment; it provides structure.
+
+### The Orchestrator Agent: Maestro
+
+This lab includes an orchestrator agent called **Maestro** (`.github/agents/workflow-orchestrator.agent.md`) that can help plan workflows involving Scout, Scribe, Builder, and Sage.
+
+**What Maestro does well:**
+- Decomposes goals into standard phases (analysis → documentation → implementation → handoff)
+- Identifies which tasks might run in parallel
+- Suggests quality gate criteria
+- Produces a structured plan with sample prompts
+
+**What Maestro doesn't do:**
+- Execute the plan autonomously (you do that)
+- Make judgment calls about quality (you verify)
+- Adapt to unexpected discoveries (you pivot)
+- Replace domain expertise (you provide context)
+
+### Parallel Execution with Subagents
+
+GitHub Copilot supports running agents as **subagents**—isolated agents that work independently and return only their final result. When tasks are independent, you can run multiple subagents in parallel.
+
+**Sequential (dependent tasks):**
+```
+@Scout Analyze Models/
+[wait for result]
+@Scout Analyze Controllers/
+[wait for result]
+```
+
+**Parallel (independent tasks using subagents):**
+```
+#runSubagent @Scout Analyze Models/ for entity patterns
+#runSubagent @Scout Analyze Controllers/ for action patterns
+#runSubagent @Scout Analyze Views/ for Razor patterns
+```
+
+All three analyses run concurrently, and results return to your main conversation when complete.
+
+**When parallel helps:**
+- Independent analysis of different code areas
+- Research tasks that don't depend on each other
+- Creating documentation for separate components
+- Running validations on independent files
+
+**When to stay sequential:**
+- Tasks depend on prior results
+- You need to review and decide before continuing
+- Quality gates require human verification
+
+### Exercise: Compare Orchestration Approaches
+
+Let's see how Maestro plans a workflow and compare it to manual orchestration.
+
+1. Open GitHub Copilot Chat
+2. Invoke Maestro:
+
+```
+@Maestro Plan the implementation of a student search feature for the Contoso
+University application. The feature should allow searching students by name
+from the Students Index page.
+```
+
+3. Review Maestro's output and consider:
+   - Is the phase decomposition helpful?
+   - Are the suggested quality gates appropriate?
+   - What would you do differently?
+   - Where would you want more control?
+
+<details>
+<summary>Expected Maestro Output</summary>
+
+Maestro should produce a workflow plan similar to:
+
+```markdown
+# Workflow Plan: Student Search Feature
+
+## Goal
+Enable searching students by name from the Students Index page.
+
+## Execution Overview
+
+| Phase | Specialist | Execution | Your Role |
+|-------|-----------|-----------|-----------|
+| 1. Analysis | Scout | Can parallelize | Review findings |
+| 2. Stories | Scribe | Sequential | Validate & approve |
+| 3. Implementation | Builder | Sequential | Review & test |
+| 4. Handoff | Sage | Sequential | Verify completeness |
+
+## Phases
+
+### Phase 1: Analysis
+**Specialist**: @Scout
+**Parallel opportunity**: Multiple Scout subagents for independent areas
+
+**Sample Prompts**:
+> #runSubagent @Scout Analyze existing search patterns in the codebase
+> #runSubagent @Scout Analyze StudentsController.cs for Index action patterns
+
+**Your quality gate**: Review analysis, confirm approach before stories
+
+### Phase 2: Story Creation
+**Specialist**: @Scribe
+**Sample Prompt**:
+> @Scribe Create a user story for student search with acceptance criteria.
+
+**Your quality gate**: Validate story against rubric, refine if needed
+
+### Phase 3: Implementation
+**Specialist**: @Builder
+**Sample Prompt**:
+> @Builder Implement the student search story following existing patterns.
+
+**Your quality gate**: Review code, run tests, verify AC met
+
+### Phase 4: Documentation
+**Specialist**: @Sage
+**Sample Prompt**:
+> @Sage Document the student search feature.
+
+**Your quality gate**: Verify documentation accuracy
+```
+
+</details>
+
+### Reflection Questions
+
+1. **Where does Maestro's plan help?**
+   - Consistent phase structure
+   - Identified parallel opportunities
+   - Sample prompts ready to use
+
+2. **Where do you still need judgment?**
+   - Verifying analysis is sufficient
+   - Approving story quality
+   - Reviewing code correctness
+   - Deciding when to deviate from the plan
+
+3. **When would you skip the orchestrator?**
+   - Small, quick tasks
+   - Exploratory work
+   - When you need maximum flexibility
+
+<details>
+<summary>Discussion</summary>
+
+**Orchestrator value:**
+- Provides structure for repeatable workflows
+- Helps identify parallel execution opportunities
+- Gives you a starting point to customize
+- Ensures you don't skip phases
+
+**Human orchestration value:**
+- Better for complex, judgment-heavy work
+- Allows pivoting based on discoveries
+- You learn more about the codebase
+- Quality gates are truly verified, not just checked off
+
+**Recommended approach for most work:**
+- Use Maestro to generate a plan for unfamiliar workflows
+- Execute manually, staying in the loop at each phase
+- Apply human judgment at every quality gate
+- Deviate from the plan when discoveries warrant it
+
+</details>
+
+---
+
+## 1.4 Exploring GitHub Copilot Custom Agents
 
 Now let's get hands-on with the custom agents configured for this lab.
 
@@ -226,14 +489,14 @@ Let's try using Scout to analyze a file in the Contoso University codebase.
 4. Ask Scout to analyze a model file:
 
 ```
-@Scout Please analyze the ContosoUniversity/Models/Student.cs file.
-What patterns do you see? Are there any improvements you'd suggest?
+@Scout Grade ContosoUniversity/Models/Student.cs against the coding standards rubric. Provide scores for each criterion and an overall verdict.
 ```
 
 5. Observe how Scout responds:
-   - Does it examine the file structure?
-   - Does it identify patterns (like data annotations)?
-   - Does it reference .NET best practices?
+   - Does it score each criterion (Clarity, Correctness, Robustness, Security, Simplicity, Maintainability)?
+   - Does it provide an overall verdict (PASS / NEEDS WORK / FAIL)?
+   - Does it reference specific line numbers with actionable feedback?
+   - Does it identify both strengths and issues?
 
 ### Exercise: Agent Exploration
 
@@ -281,6 +544,9 @@ In this lab, you learned:
 - **Multi-agent orchestration** coordinates specialized AI agents to accomplish complex tasks
 - **Sequential execution** is for dependent tasks; **parallel execution** is for independent tasks
 - **Single-session workflows** suit bounded tasks; **multi-session workflows** suit complex projects
+- **Human-driven orchestration** is best for complex work requiring judgment; **agent-driven orchestration** helps with structured, repeatable workflows
+- **Subagents** enable parallel execution of independent tasks, returning results to the main conversation
+- **Orchestrator agents** (like Maestro) produce plans—but you execute them and verify quality gates
 - **Custom agents** are defined in `.github/agents/` with YAML frontmatter and markdown instructions
 - Each agent has a distinct personality and expertise tailored to specific tasks
 

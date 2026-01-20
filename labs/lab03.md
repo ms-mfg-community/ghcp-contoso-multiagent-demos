@@ -15,6 +15,28 @@ References:
 
 A user story is a unit of work that delivers measurable value. In multi-agent workflows, stories also serve as execution contexts—each story includes an agent assignment and a prompt that can be executed directly.
 
+### Story Writing Standards Reference
+
+This lab follows the story writing standards defined in the project:
+
+| Resource | Path | Purpose |
+|----------|------|---------|
+| **Rubric** | `docs/standards/story-writing-standards-rubric.md` | Full scoring criteria |
+| **Grading Skill** | `.github/skills/story-writing-standards/SKILL.md` | How to evaluate stories |
+| **Grading Prompt** | `.github/prompts/grade-story.prompt.md` | Quick story evaluation |
+
+Stories are evaluated on **5 criteria**:
+
+| Criterion | Weight | Question |
+|-----------|--------|----------|
+| Acceptance Criteria Quality | 25% | Can an implementer verify completion? |
+| Testability | 20% | Can automated tests be written directly? |
+| Scope Clarity | 20% | Is it unambiguous what IS and IS NOT included? |
+| Technical Detail Sufficiency | 20% | Does an AI agent have enough context? |
+| Project Pattern Alignment | 15% | Does it follow project conventions? |
+
+**Target**: Stories must score **7+** overall and **6+** on each criterion to be implementation-ready.
+
 ### Why Story Structure Matters
 
 Well-structured stories enable:
@@ -94,6 +116,26 @@ Two common formats work well:
 ```markdown
 - [ ] AC1: Given an instructor viewing course enrollments, when they select a grade from the dropdown, then the enrollment record is updated
 ```
+
+### INVEST Principles
+
+Before writing stories, validate them against the INVEST principles:
+
+| Principle | Question | Pass? |
+|-----------|----------|-------|
+| **I**ndependent | Can this story be completed without waiting for other stories? | |
+| **N**egotiable | Can implementation details be discussed during development? | |
+| **V**aluable | Does this deliver user or business value? | |
+| **E**stimable | Can the team estimate the work required? | |
+| **S**mall | Can this be completed in one sprint/session? | |
+| **T**estable | Are there clear acceptance criteria to verify completion? | |
+
+> **Reference**: The full INVEST checklist is in `docs/standards/story-writing-standards-rubric.md` (lines 179-190).
+
+**Common INVEST violations:**
+- **Not Independent**: "Story B requires Story A's database changes" → Split or sequence explicitly
+- **Not Small**: "Implement user management" → Break into 5-10 focused stories
+- **Not Testable**: "System should be fast" → Quantify: "Response time < 2 seconds"
 
 ### Agent Assignment Considerations
 
@@ -601,6 +643,67 @@ You are implementing GPA calculation for Contoso University.
 
 </details>
 
+### Validating Stories Before Execution
+
+Before executing stories with Builder, validate them against the story writing standards:
+
+```
+@Scribe Evaluate Story A (Backend - UpdateGrade Action) against our story
+writing standards rubric at docs/standards/story-writing-standards-rubric.md.
+
+Score each of the 5 criteria and provide:
+1. Scores with specific observations
+2. Overall verdict (READY FOR DEV / NEEDS REFINEMENT / NEEDS REWRITE)
+3. Specific improvements if any criterion scores below 6
+```
+
+**Quality Gate Checklist:**
+
+| Criterion | Minimum Score | Story A | Story B | Story C |
+|-----------|---------------|---------|---------|---------|
+| AC Quality | 6 | | | |
+| Testability | 6 | | | |
+| Scope Clarity | 6 | | | |
+| Technical Detail | 6 | | | |
+| Pattern Alignment | 6 | | | |
+| **Overall** | **7** | | | |
+
+> **Tip**: Use `.github/prompts/grade-story.prompt.md` for quick evaluations.
+
+<details>
+<summary>Example: Story A Evaluation</summary>
+
+```markdown
+## Story Evaluation: Story A - Backend UpdateGrade Action
+
+| Criterion | Score | Notes |
+|-----------|-------|-------|
+| AC Quality | 8/10 | 6 specific, testable ACs covering happy path and errors |
+| Testability | 8/10 | Can derive unit tests for each AC directly |
+| Scope Clarity | 9/10 | Single action, clear boundaries, no scope creep risk |
+| Technical Detail | 7/10 | Controller and parameters specified; DI approach implied |
+| Pattern Alignment | 8/10 | Follows existing controller patterns |
+| **Overall** | **8.0/10** | |
+
+**Verdict**: READY FOR DEV
+
+**Minor suggestions**:
+- Consider adding AC for concurrent update handling
+- Specify logging requirements for audit trail
+```
+
+</details>
+
+**If a story needs refinement:**
+
+```
+@Scribe Story A scored 5/10 on Technical Detail Sufficiency.
+Please enhance the story with:
+1. Specific file paths to modify
+2. Reference to similar existing implementations
+3. Database/model details the implementer needs
+```
+
 ### Executing the Stories
 
 With all three stories defined, here's the execution plan:
@@ -674,12 +777,19 @@ In this lab, you learned:
 
 - **Story structure** includes Summary, Agent, AC, Dependencies, and Prompt
 - **Acceptance criteria** must be testable, specific, and observable
+- **INVEST principles** validate story structure before implementation
 - **Agent assignment** matches the work type to agent expertise
 - **Agent prompts** need context, tasks, and expected output
 - **Parallel execution** is possible when stories don't share dependencies
 - **Scribe** can draft multiple related stories efficiently
+- **Story validation** ensures stories meet quality standards before execution
 - **Builder** executes implementation prompts to deliver functionality
 
-**Key takeaway:** A well-structured story with complete acceptance criteria and a ready-to-execute prompt enables efficient multi-agent workflows. The time spent crafting the story pays off in cleaner execution.
+**Key takeaway:** A well-structured story with complete acceptance criteria and a ready-to-execute prompt enables efficient multi-agent workflows. Always validate stories against the rubric before execution—the time spent on quality gates pays off in cleaner implementation.
+
+**Standards Reference:**
+- Rubric: `docs/standards/story-writing-standards-rubric.md`
+- Grading Skill: `.github/skills/story-writing-standards/SKILL.md`
+- Grading Prompt: `.github/prompts/grade-story.prompt.md`
 
 **Next:** In Lab 4, you'll execute these stories with Builder and observe the full development workflow.

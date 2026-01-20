@@ -405,34 +405,55 @@ Added the action signature to InstructorsController.cs
 | **Track AC explicitly** | Clear what's done vs remaining |
 | **Note blockers prominently** | Don't repeat failed approaches |
 
-### Using Sage for Handoff Creation
+### Using the Handoff Prompt
 
-Sage can help create handoff documents:
+The project includes a handoff creation prompt for consistent, structured handoffs:
 
 ```
-@Sage Create a handoff document for Story A - Backend UpdateGrade Action.
+@Sage Create a handoff document using the template at docs/handoffs/handoff-template.md.
 
-Current state:
-- UpdateGrade action signature added
-- Implementation not started
-- AC1 and AC2 complete, AC3-6 remaining
+Story: S01 - Backend UpdateGrade Action
+Session: 1
+Agent: Builder
+Duration: ~15 minutes
 
-Include a prompt for @Builder to continue the work.
+Completed:
+- [x] AC1: UpdateGrade action exists
+- [x] AC2: Parameters correct
+
+Remaining:
+- [ ] AC3-6: Implementation and validation
+
+Context: Action signature added, body needs implementation.
+Next step: Implement action body following existing controller patterns.
 ```
+
+> **Reference**: `.github/prompts/create-handoff.prompt.md` provides the full handoff workflow with all required sections.
+
+**Handoff Prompt Output:**
+
+The prompt generates a handoff with:
+1. **Session Metadata** - Date, story, agent, duration
+2. **Status Summary** - What's done, what remains
+3. **Files Modified** - Paths and changes
+4. **Next Session Prompt** - Copy-paste ready continuation
+5. **Epic Progress Update** - Status changes to reflect
 
 <details>
-<summary>Why Use Sage for Handoffs?</summary>
+<summary>Why Use the Handoff Prompt?</summary>
 
 **Benefits:**
-- Sage understands project management conventions
-- Consistent formatting across handoffs
-- Includes all necessary sections automatically
-- Generates effective continuation prompts
+- Consistent formatting across all handoffs
+- Ensures no critical sections are missed
+- Generates effective continuation prompts automatically
+- Tracks epic progress alongside story progress
 
 **When to write manually:**
-- Quick, simple handoffs
+- Quick, simple handoffs (use template directly)
 - Debugging sessions with complex context
-- When you need specific technical details
+- When you need very specific technical details
+
+**Template location:** `docs/handoffs/handoff-template.md`
 
 </details>
 
@@ -512,6 +533,51 @@ Watch as Builder:
 | AC4 | 404 for invalid ID | Check for `NotFound()` return |
 | AC5 | 200 on success | Check for `Ok()` or similar return |
 | AC6 | Database persistence | Check for `SaveChangesAsync()` call |
+
+**Step 5: Grade the implementation**
+
+After verifying ACs, evaluate the code against quality standards:
+
+```
+@Scout Grade the UpdateGrade action in ContosoUniversity/Controllers/InstructorsController.cs
+against the coding standards rubric at docs/standards/coding-standards-rubric.md.
+
+Score each of the 6 criteria and provide:
+1. Scores with specific observations
+2. Overall verdict (PASS / NEEDS WORK / FAIL)
+3. Specific issues to fix if any criterion scores below 6
+```
+
+**Quality Gate:**
+
+| Criterion | Weight | Minimum | Score |
+|-----------|--------|---------|-------|
+| Clarity | 20% | 6 | |
+| Correctness | 20% | 6 | |
+| Robustness | 15% | 6 | |
+| Security | 15% | 6 | |
+| Simplicity | 15% | 6 | |
+| Maintainability | 15% | 6 | |
+| **Overall** | 100% | **7** | |
+
+> **Reference**:
+> - Rubric: `docs/standards/coding-standards-rubric.md`
+> - Skill: `.github/skills/coding-standards-grading/SKILL.md`
+> - Prompt: `.github/prompts/grade-code.prompt.md`
+
+**If code needs improvement:**
+
+```
+@Builder The UpdateGrade action scored 5/10 on Robustness.
+Issues identified:
+- No exception handling for database failures
+- No logging of grade changes
+
+Please add:
+1. Try-catch with specific exception types
+2. ILogger injection and logging of grade updates
+3. Return appropriate error response on failure
+```
 
 <details>
 <summary>Expected Implementation</summary>
@@ -913,15 +979,24 @@ Track insights that help future implementation:
 In this lab, you learned:
 
 - **Single-session implementation** works for small, self-contained stories with clear AC
-- **The implementation workflow** is: Load Story → Execute Prompt → Verify AC → Mark Complete
+- **The implementation workflow** is: Load Story → Execute Prompt → Verify AC → Grade Code → Mark Complete
+- **Code quality gates** ensure implementations meet standards before marking complete
 - **Handoff documents** capture state for resuming work across sessions
-- **Handoff structure** includes session info, status, context, and continuation prompt
+- **Handoff prompt** (`create-handoff.prompt.md`) generates consistent, structured handoffs
 - **Builder** executes implementation prompts by following existing codebase patterns
 - **Verifying AC** means testing each criterion explicitly, not assuming completion
+- **Code grading** validates implementation quality against the 6-criterion rubric
 - **Progress tracking** maintains epic visibility through status tables and session notes
 - **Completion handoffs** summarize session accomplishments and recommended next steps
 
-**Key takeaway:** Effective multi-agent orchestration is as much about managing context and continuity as it is about executing prompts. Good handoffs and progress tracking ensure work isn't lost and can be resumed efficiently.
+**Key takeaway:** Effective multi-agent orchestration is as much about managing context and continuity as it is about executing prompts. Good handoffs, progress tracking, and quality gates ensure work isn't lost, can be resumed efficiently, and meets standards.
+
+**Standards Reference:**
+- Code Rubric: `docs/standards/coding-standards-rubric.md`
+- Code Grading Skill: `.github/skills/coding-standards-grading/SKILL.md`
+- Code Grading Prompt: `.github/prompts/grade-code.prompt.md`
+- Handoff Prompt: `.github/prompts/create-handoff.prompt.md`
+- Handoff Template: `docs/handoffs/handoff-template.md`
 
 **The complete workflow:**
 
@@ -933,12 +1008,16 @@ In this lab, you learned:
 │   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐     │
 │   │    Epic      │───▶│   Stories    │───▶│   Execute    │     │
 │   │  (Lab 2)     │    │  (Lab 3)     │    │  (Lab 4)     │     │
+│   │              │    │              │    │              │     │
+│   │ + Validate   │    │ + Validate   │    │ + Grade      │     │
+│   │   stories    │    │   stories    │    │   code       │     │
 │   └──────────────┘    └──────────────┘    └──────────────┘     │
 │                                                  │               │
 │                                                  ▼               │
 │                              ┌────────────────────────────────┐ │
 │                              │        Verify & Track          │ │
 │                              │  • Check each AC               │ │
+│                              │  • Grade code (7+ to pass)     │ │
 │                              │  • Update story status         │ │
 │                              │  • Create handoffs if needed   │ │
 │                              │  • Update epic progress        │ │
@@ -951,6 +1030,8 @@ Congratulations! You've completed the multi-agent orchestration lab series. You 
 - Analyze brownfield codebases with Scout
 - Create structured epics with Scribe
 - Write implementation-ready stories with complete prompts
+- Validate stories against quality standards before execution
 - Execute stories with Builder
-- Manage context across sessions with handoffs
+- Grade code implementations against the coding standards rubric
+- Manage context across sessions with structured handoffs
 - Track progress through epic completion
