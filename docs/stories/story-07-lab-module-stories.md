@@ -6,7 +6,7 @@ Write the third lab module that teaches learners how to break down an epic into 
 
 ## Assigned Agent
 
-**Claude Code Agent**: `General-Purpose`
+**GitHub Copilot Chat**: Agent mode
 
 ## Acceptance Criteria
 

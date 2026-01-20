@@ -6,7 +6,7 @@ Perform end-to-end validation of the complete lab, ensuring all modules work cor
 
 ## Assigned Agent
 
-**Claude Code Agent**: `Dev` (or manual testing)
+**GitHub Copilot Chat**: Agent mode (or manual testing)
 
 ## Acceptance Criteria
 
@@ -117,7 +117,7 @@ You are validating a completed multi-agent orchestration lab.
 
 ### Session 1 - 2026-01-16
 
-**Validation completed by Claude Code Agent (Dev)**
+**Validation completed by GitHub Copilot Chat**
 
 #### Validation Report
 

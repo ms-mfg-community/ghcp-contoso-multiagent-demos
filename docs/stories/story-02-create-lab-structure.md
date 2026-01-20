@@ -6,7 +6,7 @@ Create the lab folder structure following the patterns from gh-abcs-actions, inc
 
 ## Assigned Agent
 
-**Claude Code Agent**: `General-Purpose`
+**GitHub Copilot Chat**: Agent mode
 
 ## Acceptance Criteria
 
@@ -102,7 +102,7 @@ You are creating the lab structure for a GitHub Copilot multi-agent orchestratio
 
 ### Session 2 - 2025-01-16
 
-**Completed by:** Claude Code Agent
+**Completed by:** GitHub Copilot Chat
 
 **Actions Taken:**
 1. Read reference materials from gh-abcs-actions (setup.md and README.md patterns)

@@ -6,7 +6,7 @@ Prepare the lab repository infrastructure by copying necessary GitHub Copilot ag
 
 ## Assigned Agent
 
-**Claude Code Agent**: `Explore` (for research) + `General-Purpose` (for file operations)
+**GitHub Copilot Chat**: `@workspace` (for research) + agent mode (for file operations)
 
 ## Acceptance Criteria
 

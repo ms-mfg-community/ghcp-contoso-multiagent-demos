@@ -6,7 +6,7 @@ Create a custom agent similar to the BMAD PM agent that helps write documentatio
 
 ## Assigned Agent
 
-**Claude Code Agent**: `General-Purpose`
+**GitHub Copilot Chat**: Agent mode
 
 ## Acceptance Criteria
 

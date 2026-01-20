@@ -6,7 +6,7 @@ Create custom GitHub Copilot agents specific to this lab that will help learners
 
 ## Assigned Agent
 
-**Claude Code Agent**: `General-Purpose`
+**GitHub Copilot Chat**: Agent mode
 
 ## Acceptance Criteria
 

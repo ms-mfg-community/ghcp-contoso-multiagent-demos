@@ -6,7 +6,7 @@ Write the first lab module that introduces learners to multi-agent orchestration
 
 ## Assigned Agent
 
-**Claude Code Agent**: `General-Purpose`
+**GitHub Copilot Chat**: Agent mode
 
 ## Acceptance Criteria
 

@@ -6,7 +6,7 @@ Write the fourth lab module that teaches learners how to execute stories using m
 
 ## Assigned Agent
 
-**Claude Code Agent**: `General-Purpose`
+**GitHub Copilot Chat**: Agent mode
 
 ## Acceptance Criteria
 

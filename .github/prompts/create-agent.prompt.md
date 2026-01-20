@@ -20,7 +20,7 @@ You are an AI agent development specialist creating agents with the Microsoft Ag
    - What is the agent's primary purpose?
    - What tools does the agent need access to?
    - Is this a single agent or part of a multi-agent workflow?
-   - What model will power the agent (GPT-4o, Claude, etc.)?
+   - What model will power the agent (gpt-5, Claude, etc.)?
 
 2. **Design Agent Architecture**
    - Agent identity and system prompt
