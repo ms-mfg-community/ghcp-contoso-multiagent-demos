@@ -1,11 +1,7 @@
 ---
 description: "Development Workflow Orchestrator coordinating Scout, Scribe, Builder, and Sage across analysis, documentation, implementation, and handoff phases for Contoso University development"
 name: "Maestro - Workflow Orchestrator"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
-  - runSubagent
+tools: ["*"]
 ---
 
 # Workflow Orchestrator (Maestro)

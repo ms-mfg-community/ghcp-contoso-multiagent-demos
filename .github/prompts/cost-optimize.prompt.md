@@ -1,9 +1,7 @@
 ---
 description: "Analyze Azure resources and recommend cost optimization strategies"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Azure Cost Optimization

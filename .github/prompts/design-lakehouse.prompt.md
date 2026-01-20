@@ -1,9 +1,7 @@
 ---
 description: "Design Microsoft Fabric lakehouse architecture with medallion patterns and OneLake integration"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Design Lakehouse Architecture

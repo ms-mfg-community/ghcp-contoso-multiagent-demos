@@ -113,10 +113,12 @@ labs/
 
 ### MCP Server Configuration
 
-The `mcp.json` file configures Model Context Protocol servers for enhanced documentation access:
+The `.vscode/mcp.json` file configures Model Context Protocol servers for VS Code:
 
 - **microsoft-learn**: Access Microsoft Learn documentation, code samples, and guides
-- **context7**: Access third-party library documentation
+- **context7**: Access third-party library documentation (via Context7)
+
+> **Note:** MCP servers are configured at the workspace level in `.vscode/mcp.json`. Agents automatically have access to all tools (including MCP server tools) via `tools: ["*"]` in their frontmatter.
 
 ---
 

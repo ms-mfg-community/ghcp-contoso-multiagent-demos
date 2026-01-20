@@ -1,9 +1,7 @@
 ---
 description: "Generate tests for Azure infrastructure, APIs, load testing, or AI agents"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Create Tests

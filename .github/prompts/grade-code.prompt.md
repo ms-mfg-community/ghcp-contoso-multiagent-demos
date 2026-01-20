@@ -1,14 +1,14 @@
 ---
 description: "Evaluate code against the project's coding standards rubric with structured scoring and actionable feedback"
-agent: "Builder - .NET Developer"
-tools:
-  - microsoft.docs.mcp
-  - context7
+mode: "agent"
+tools: ["*"]
 ---
 
 # Grade Code Against Standards
 
-Evaluate the provided code against `/docs/standards/coding-standards-rubric.md`.
+**Use the @Builder (.NET Developer) subagent** to evaluate the provided code against `/docs/standards/coding-standards-rubric.md`.
+
+> **Note**: This prompt delegates to the Builder agent for .NET expertise. Ensure the `runSubagent` tool is enabled in Copilot Chat settings for isolated execution.
 
 ## Input
 

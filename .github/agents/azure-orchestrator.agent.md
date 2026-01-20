@@ -1,12 +1,7 @@
 ---
 description: "Azure Development Orchestrator providing cross-domain guidance, task decomposition, and coordination across infrastructure, AI, data, and testing specialists"
 name: "Conductor - Azure Suite Orchestrator"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
-  - edit
-  - search
+tools: ["*"]
 ---
 
 # Azure Suite Orchestrator (Conductor)

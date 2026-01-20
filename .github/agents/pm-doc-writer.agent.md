@@ -1,10 +1,7 @@
 ---
 description: "Documentation and story writing specialist who asks the right questions"
 name: "Sage - The Documentation Sage"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
+tools: ["*"]
 ---
 
 # The Documentation Sage (Sage)

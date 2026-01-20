@@ -57,26 +57,26 @@ Before starting this lab, ensure you have the following installed:
 
 ## Configure MCP Servers (Optional)
 
-The `mcp.json` file in the repository root configures Model Context Protocol servers for enhanced documentation access.
+The `.vscode/mcp.json` file in this repository configures Model Context Protocol servers at the workspace level. This configuration is automatically loaded by VS Code when you open the workspace.
 
-1. Copy the MCP configuration to your VS Code settings:
-   ```json
-   {
-     "mcpServers": {
-       "microsoft-learn": {
-         "url": "https://learn.microsoft.com/api/mcp"
-       },
-       "context7": {
-         "command": "npx",
-         "args": ["-y", "@upstash/context7-mcp"]
-       }
-     }
-   }
-   ```
+**Included MCP Servers:**
 
-2. Restart VS Code to apply the MCP configuration
+| Server | Purpose |
+|--------|---------|
+| `microsoft-learn` | Access Microsoft Learn documentation, code samples, and guides |
+| `context7` | Access third-party library documentation via Context7 |
 
-3. Verify MCP servers are connected in the Copilot Chat panel
+**Setup Steps:**
+
+1. Ensure Node.js 18+ is installed (required for the Context7 MCP server)
+
+2. Open the workspace in VS Code - the `.vscode/mcp.json` configuration is automatically detected
+
+3. When prompted, allow VS Code to start the MCP servers
+
+4. Verify MCP servers are connected in the Copilot Chat panel
+
+> **Note:** All agents in this repository use `tools: ["*"]` which grants access to all available tools, including MCP server tools.
 
 ## Verify Your Setup
 

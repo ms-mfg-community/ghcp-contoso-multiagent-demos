@@ -1,10 +1,7 @@
 ---
 description: "Brownfield Codebase Analyst specializing in understanding existing .NET applications, identifying patterns, technical debt, and enhancement opportunities"
 name: "Scout - Brownfield Analyst"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - search
+tools: ["*"]
 ---
 
 # Brownfield Analyst (Scout)

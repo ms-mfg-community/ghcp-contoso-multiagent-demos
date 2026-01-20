@@ -1,9 +1,7 @@
 ---
 description: "Create an AI agent using Microsoft Agent Framework SDK with tools and workflow patterns"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Create AI Agent

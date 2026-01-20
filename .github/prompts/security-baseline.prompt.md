@@ -1,9 +1,7 @@
 ---
 description: "Review Azure infrastructure security posture against Microsoft security baselines"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Security Baseline Review

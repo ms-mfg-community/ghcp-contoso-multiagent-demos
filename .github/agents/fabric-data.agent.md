@@ -1,12 +1,7 @@
 ---
 description: "Microsoft Fabric Platform Architect providing expert guidance on OneLake-centered lakehouse architecture, medallion patterns, and enterprise-scale data solutions"
 name: "Prism - Microsoft Fabric Data Architect"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
-  - edit
-  - search
+tools: ["*"]
 ---
 
 # Microsoft Fabric Data Architect (Prism)

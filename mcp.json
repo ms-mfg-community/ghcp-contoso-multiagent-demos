@@ -1,17 +1,27 @@
 {
-  "description": "MCP Server Configuration for GitHub Copilot Multi-Agent Orchestration Lab",
-  "instructions": "Copy the server configuration below to your MCP client settings. See README.md for client-specific setup.",
+  "_comment": "REFERENCE FILE - Actual VS Code configuration is in .vscode/mcp.json",
+  "description": "MCP Server Reference for GitHub Copilot Multi-Agent Orchestration Lab",
+  "instructions": "VS Code automatically loads .vscode/mcp.json. This file documents available MCP servers and their tools.",
   "servers": {
     "microsoft-learn": {
-      "type": "http",
+      "type": "sse",
       "url": "https://learn.microsoft.com/api/mcp",
-      "description": "Official Microsoft Learn MCP Server - provides access to microsoft_docs_search, microsoft_docs_fetch, and microsoft_code_sample_search tools"
+      "description": "Official Microsoft Learn MCP Server",
+      "tools": [
+        "microsoft_docs_search - Search Microsoft documentation",
+        "microsoft_docs_fetch - Fetch specific documentation pages",
+        "microsoft_code_sample_search - Search for code samples"
+      ]
     },
     "context7": {
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp"],
-      "description": "Context7 MCP Server - provides access to resolve-library-id and get-library-docs tools for third-party library documentation"
+      "description": "Context7 MCP Server for third-party library documentation",
+      "tools": [
+        "resolve-library-id - Find library IDs for documentation lookup",
+        "get-library-docs - Fetch library documentation and code examples"
+      ]
     }
   }
 }

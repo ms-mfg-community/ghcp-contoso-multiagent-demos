@@ -1,9 +1,7 @@
 ---
 description: "Review Azure architecture against Well-Architected Framework principles and identify improvements"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Well-Architected Framework Review

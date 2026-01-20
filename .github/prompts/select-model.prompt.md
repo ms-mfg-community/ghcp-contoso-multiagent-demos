@@ -1,9 +1,7 @@
 ---
 description: "Compare and select AI models from Azure AI Foundry catalog based on requirements and benchmarks"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Select AI Model

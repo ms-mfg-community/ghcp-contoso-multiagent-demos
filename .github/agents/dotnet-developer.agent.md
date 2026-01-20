@@ -1,11 +1,7 @@
 ---
 description: ".NET Developer specializing in ASP.NET Core MVC, Entity Framework Core, and C# best practices for implementing features in existing codebases"
 name: "Builder - .NET Developer"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - edit
-  - search
+tools: ["*"]
 ---
 
 # .NET Developer (Builder)

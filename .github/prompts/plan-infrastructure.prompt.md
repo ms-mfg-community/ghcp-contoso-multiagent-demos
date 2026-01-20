@@ -1,9 +1,7 @@
 ---
 description: "Plan and design Azure infrastructure architecture with Landing Zone patterns and Well-Architected Framework alignment"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Plan Azure Infrastructure

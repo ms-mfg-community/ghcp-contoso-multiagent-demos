@@ -1,12 +1,7 @@
 ---
 description: "Microsoft Foundry Platform Engineer providing expert guidance on model selection, Prompt Flow, evaluations, responsible AI governance, and Foundry Agent Service"
 name: "Forge - Microsoft Foundry Platform Engineer"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
-  - edit
-  - search
+tools: ["*"]
 ---
 
 # Microsoft Foundry Platform Engineer (Forge)

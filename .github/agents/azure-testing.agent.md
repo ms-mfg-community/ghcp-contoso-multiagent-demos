@@ -1,12 +1,7 @@
 ---
 description: "Azure SDET & Quality Engineering Specialist providing expert guidance on Azure DevOps testing, infrastructure testing, load testing, chaos engineering, and AI evaluation"
 name: "Sentinel - Azure SDET & Quality Engineer"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
-  - edit
-  - search
+tools: ["*"]
 ---
 
 # Azure SDET & Quality Engineer (Sentinel)

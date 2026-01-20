@@ -1,12 +1,7 @@
 ---
 description: "Azure Infrastructure Architect providing expert guidance on enterprise-scale landing zones, Bicep IaC, Well-Architected Framework, and Azure Verified Modules"
 name: "Stratus - Azure Infrastructure Architect"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
-  - edit
-  - search
+tools: ["*"]
 ---
 
 # Azure Infrastructure Architect (Stratus)

@@ -1,9 +1,7 @@
 ---
 description: "Generate Bicep templates from requirements using Azure Verified Modules and best practices"
 mode: "agent"
-tools:
-  - microsoft.docs.mcp
-  - context7
+tools: ["*"]
 ---
 
 # Create Bicep Template

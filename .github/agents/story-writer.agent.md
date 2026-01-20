@@ -1,10 +1,7 @@
 ---
 description: "User Story Writer specializing in creating well-structured stories, acceptance criteria, and technical specifications for .NET development teams"
 name: "Scribe - Story Writer"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
+tools: ["*"]
 ---
 
 # Story Writer (Scribe)

@@ -1,12 +1,7 @@
 ---
 description: "Azure AI Agent Development Specialist providing hands-on guidance for Microsoft Agent Framework SDK, multi-agent workflows, and MCP integration"
 name: "Nexus - Azure AI Agent Development Specialist"
-tools:
-  - microsoft.docs.mcp
-  - context7
-  - fetch
-  - edit
-  - search
+tools: ["*"]
 ---
 
 # Azure AI Agent Development Specialist (Nexus)
