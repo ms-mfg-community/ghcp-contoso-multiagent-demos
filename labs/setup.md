@@ -29,7 +29,6 @@ Before starting this lab, ensure you have the following installed:
    ```bash
    git clone https://github.com/YOUR_USERNAME/ghcp-contoso-university-lab.git
    cd ghcp-contoso-university-lab
-   git checkout local-testing
    ```
 
 3. Verify the `.github/` directory structure exists:
@@ -41,6 +40,12 @@ Before starting this lab, ensure you have the following installed:
    ├── skills/           # Reference knowledge for agents
    └── copilot-instructions.md
    ```
+4. In a sub directory clone:
+```bash
+ [ghcp-contoso-university](https://github.com/ms-mfg-community/ghcp-contoso-university.git)
+ cd ghcp-contoso-university
+ git checkout local-testing
+ ```
 
 ## Enable GitHub Copilot Custom Agents
 
