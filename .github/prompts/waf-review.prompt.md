@@ -1,7 +1,5 @@
 ---
 description: "Review Azure architecture against Well-Architected Framework principles and identify improvements"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Well-Architected Framework Review

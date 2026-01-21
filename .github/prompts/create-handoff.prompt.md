@@ -1,9 +1,5 @@
 ---
 description: "Create a handoff document to preserve context between sessions for multi-session workflows"
-mode: "agent"
-tools:
-  - edit
-  - search
 ---
 
 # Create Handoff Document

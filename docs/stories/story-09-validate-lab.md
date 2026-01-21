@@ -127,7 +127,7 @@ You are validating a completed multi-agent orchestration lab.
 | AC2 | Agent YAML | ✅ PASS | All 4 Contoso-specific agents have valid YAML frontmatter with description, name, tools array |
 | AC3 | MCP JSON | ✅ PASS | mcp.json is valid JSON with microsoft-learn and context7 servers configured |
 | AC4 | Lab Progression | ✅ PASS | Logical flow: Lab 1 (Concepts) → Lab 2 (Epics) → Lab 3 (Stories) → Lab 4 (Implementation) |
-| AC5 | Code Examples | ✅ PASS | Agent names consistent (@Scout, @Scribe, @Builder, @Sage), file paths consistent |
+| AC5 | Code Examples | ✅ PASS | Agent names consistent (Scout, Scribe, Builder, Sage), file paths consistent |
 | AC6 | Handoff Template | ✅ PASS | Template includes all sections: metadata, current/next story, session prompt, progress tracking |
 | AC7 | README Accuracy | ✅ PASS | All claims verified against actual repository structure |
 | AC8 | End-to-End | ✅ PASS | Clear learner path with duration estimates, exercises, knowledge checks, summaries |

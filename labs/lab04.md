@@ -39,7 +39,7 @@ Single-session implementation works best when:
 │          │                                                       │
 │          ▼                                                       │
 │   ┌──────────────┐                                              │
-│   │Execute Prompt│  Invoke @Builder with the agent prompt       │
+│   │Execute Prompt│  Invoke Builder with the agent prompt        │
 │   └──────────────┘                                              │
 │          │                                                       │
 │          ▼                                                       │
@@ -68,8 +68,10 @@ Open `docs/stories/story-gpa-calculation.md` (or reference from Lab 3) and revie
 
 **Step 2: Invoke Builder**
 
+Select **Builder** from the agent dropdown, then enter the prompt below.
+
 ```
-@Builder Create the GradeExtensions class for Contoso University.
+Create the GradeExtensions class for Contoso University.
 
 **Context:**
 - Repository: ContosoUniversity MVC application
@@ -160,7 +162,7 @@ Update the story file:
 - GradeExtensions.cs created in ContosoUniversity/Extensions/
 - All AC verified
 - Compiles successfully
-- Completed: [date] by @Builder
+- Completed: [date] by Builder
 ```
 
 ### Knowledge Check
@@ -239,7 +241,7 @@ Use this template for all handoffs:
 ## Session Info
 - **Date**: YYYY-MM-DD HH:MM
 - **Story**: [Story ID and title]
-- **Agent**: @Builder / @Scout / @Scribe / @Sage
+- **Agent**: Builder / Scout / Scribe / Sage
 
 ## Status Summary
 **Goal**: [What we were trying to accomplish]
@@ -275,8 +277,10 @@ Use this template for all handoffs:
 
 ## Next Session Prompt
 
+Select **Builder** from the agent dropdown, then enter the prompt below.
+
 ```
-@Builder Continue implementing [Story Name].
+Continue implementing [Story Name].
 
 **Previous Session Summary:**
 [Brief summary of what was done]
@@ -312,7 +316,7 @@ Let's practice creating a handoff document for the Backend story (Story A) as if
 ## Session Info
 - **Date**: 2024-01-15 14:30
 - **Story**: S01 - Add UpdateGrade Controller Action
-- **Agent**: @Builder
+- **Agent**: Builder
 
 ## Status Summary
 **Goal**: Add UpdateGrade POST action to InstructorsController
@@ -350,8 +354,10 @@ grade, update, save, return appropriate status codes.
 
 ## Next Session Prompt
 
+Select **Builder** from the agent dropdown, then enter the prompt below.
+
 ```
-@Builder Continue implementing the UpdateGrade action.
+Continue implementing the UpdateGrade action.
 
 **Previous Session:**
 Added the action signature to InstructorsController.cs
@@ -376,7 +382,6 @@ Added the action signature to InstructorsController.cs
 
 ## Blockers
 - None
-```
 
 **Step 2: Save the handoff**
 
@@ -384,10 +389,10 @@ Create the file: `docs/handoffs/handoff-2024-01-15-story-a.md`
 
 **Step 3: Resume in new session**
 
-When ready to continue, copy the "Next Session Prompt" and invoke Builder:
+When ready to continue, copy the "Next Session Prompt" and select **Builder** from the agent dropdown, then enter the prompt:
 
 ```
-@Builder Continue implementing the UpdateGrade action.
+Continue implementing the UpdateGrade action.
 
 **Previous Session:**
 Added the action signature to InstructorsController.cs
@@ -407,10 +412,12 @@ Added the action signature to InstructorsController.cs
 
 ### Using the Handoff Prompt
 
-The project includes a handoff creation prompt for consistent, structured handoffs:
+The project includes a handoff creation prompt for consistent, structured handoffs.
+
+Select **Sage** from the agent dropdown, then enter the prompt below.
 
 ```
-@Sage Create a handoff document using the template at docs/handoffs/handoff-template.md.
+Create a handoff document using the template at docs/handoffs/handoff-template.md.
 
 Story: S01 - Backend UpdateGrade Action
 Session: 1
@@ -459,7 +466,7 @@ The prompt generates a handoff with:
 
 ---
 
-## 4.3 Implementing with @Builder
+## 4.3 Implementing with Builder
 
 Now let's execute a complete story with Builder, observing the full implementation workflow.
 
@@ -484,8 +491,10 @@ dotnet build
 
 **Step 2: Invoke Builder with the full prompt**
 
+Select **Builder** from the agent dropdown, then enter the prompt below.
+
 ```
-@Builder You are implementing the grade update backend for Contoso University.
+You are implementing the grade update backend for Contoso University.
 
 **Context:**
 - Repository: ContosoUniversity MVC application
@@ -536,10 +545,12 @@ Watch as Builder:
 
 **Step 5: Grade the implementation**
 
-After verifying ACs, evaluate the code against quality standards:
+After verifying ACs, evaluate the code against quality standards.
+
+Select **Scout** from the agent dropdown, then enter the prompt below.
 
 ```
-@Scout Grade the UpdateGrade action in ContosoUniversity/Controllers/InstructorsController.cs
+Grade the UpdateGrade action in ContosoUniversity/Controllers/InstructorsController.cs
 against the coding standards rubric at docs/standards/coding-standards-rubric.md.
 
 Score each of the 6 criteria and provide:
@@ -567,8 +578,10 @@ Score each of the 6 criteria and provide:
 
 **If code needs improvement:**
 
+Select **Builder** from the agent dropdown, then enter the prompt below.
+
 ```
-@Builder The UpdateGrade action scored 5/10 on Robustness.
+The UpdateGrade action scored 5/10 on Robustness.
 Issues identified:
 - No exception handling for database failures
 - No logging of grade changes
@@ -634,8 +647,10 @@ If Builder encounters problems:
 
 Example correction prompt:
 
+Select **Builder** from the agent dropdown, then enter the prompt below.
+
 ```
-@Builder The UpdateGrade action is missing the ValidateAntiForgeryToken
+The UpdateGrade action is missing the ValidateAntiForgeryToken
 attribute that other POST actions have. Please add it to maintain consistency
 with the existing patterns.
 ```
@@ -661,15 +676,17 @@ Once all AC are verified:
 - Implemented in InstructorsController.cs
 - Follows existing action patterns
 - Includes validation for grade values
-- Completed: 2024-01-15 by @Builder
+- Completed: 2024-01-15 by Builder
 ```
 
 ### Exercise: Execute Story B (Frontend)
 
 Now that Story A is complete, execute Story B which depends on it.
 
+Select **Builder** from the agent dropdown, then enter the prompt below.
+
 ```
-@Builder You are implementing the grade editing UI for Contoso University.
+You are implementing the grade editing UI for Contoso University.
 
 **Context:**
 - Repository: ContosoUniversity MVC application
@@ -741,7 +758,7 @@ If the build fails before you start, fix that first.
 2. Ask explicitly: "Please match the pattern used in [specific action]"
 3. Be specific about what's different (naming, formatting, attribute usage)
 
-Example: "@Builder The UpdateGrade action should follow the same async pattern as the Edit action. Please use async/await consistently."
+Example: Select **Builder** from the agent dropdown, then enter: "The UpdateGrade action should follow the same async pattern as the Edit action. Please use async/await consistently."
 
 </details>
 
@@ -778,7 +795,7 @@ Maintain a progress tracker in your epic document:
 ### Phase 1: Backend Foundation
 | Story | Status | Completed | Notes |
 |-------|--------|-----------|-------|
-| S01 - UpdateGrade Action | Complete | 2024-01-15 | @Builder |
+| S01 - UpdateGrade Action | Complete | 2024-01-15 | Builder |
 | S04 - Database Flexibility | Not Started | - | - |
 
 ### Phase 2: Frontend Implementation
@@ -789,7 +806,7 @@ Maintain a progress tracker in your epic document:
 ### Phase 3: Enhancement
 | Story | Status | Completed | Notes |
 |-------|--------|-----------|-------|
-| S03 - GPA Calculation | Complete | 2024-01-15 | @Builder |
+| S03 - GPA Calculation | Complete | 2024-01-15 | Builder |
 ```
 
 ### Updating the Epic After Story Completion
@@ -811,7 +828,7 @@ When a story completes:
 3. **Add session note**
    ```markdown
    ### Session History
-   - 2024-01-15: Completed S01 (Backend) and S03 (GPA) with @Builder
+   - 2024-01-15: Completed S01 (Backend) and S03 (GPA) with Builder
    - 2024-01-16: Started S02 (Frontend), created handoff
    ```
 
@@ -835,15 +852,15 @@ Update the epic progress tracker:
 
 | ID | Story | Agent | Status | Date | Notes |
 |----|-------|-------|--------|------|-------|
-| S01 | UpdateGrade Action | @Builder | Complete | 2024-01-15 | Backend endpoint ready |
-| S02 | Grade Dropdown UI | @Builder | In Progress | - | Handoff: handoff-2024-01-15-story-b.md |
-| S03 | GPA Calculation | @Builder | Complete | 2024-01-15 | GradeExtensions.cs created |
-| S04 | Database Flexibility | @Builder | Not Started | - | Blocked by S02 completion |
+| S01 | UpdateGrade Action | Builder | Complete | 2024-01-15 | Backend endpoint ready |
+| S02 | Grade Dropdown UI | Builder | In Progress | - | Handoff: handoff-2024-01-15-story-b.md |
+| S03 | GPA Calculation | Builder | Complete | 2024-01-15 | GradeExtensions.cs created |
+| S04 | Database Flexibility | Builder | Not Started | - | Blocked by S02 completion |
 
 ### Session History
 
 #### 2024-01-15
-- **Agent**: @Builder
+- **Agent**: Builder
 - **Completed**: S01 (Backend), S03 (GPA)
 - **Started**: S02 (Frontend)
 - **Handoff**: Created for S02, dropdown partially implemented

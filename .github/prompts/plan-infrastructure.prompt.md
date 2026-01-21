@@ -1,7 +1,5 @@
 ---
 description: "Plan and design Azure infrastructure architecture with Landing Zone patterns and Well-Architected Framework alignment"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Plan Azure Infrastructure

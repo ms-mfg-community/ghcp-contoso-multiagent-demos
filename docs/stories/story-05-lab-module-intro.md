@@ -87,7 +87,7 @@ You are writing Lab Module 1 for a multi-agent orchestration tutorial.
 5. Write section 1.3: Exploring Custom Agents
    - Navigate to .github/agents/ folder
    - Examine agent file structure (frontmatter, sections)
-   - Hands-on: Invoke @Scout agent in Copilot Chat
+   - Hands-on: Invoke Scout agent in Copilot Chat
    - Exercise: Ask the agent to analyze a file
 
 6. Add collapsible solution sections where appropriate

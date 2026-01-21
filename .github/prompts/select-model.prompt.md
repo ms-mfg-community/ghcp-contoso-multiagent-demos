@@ -1,7 +1,5 @@
 ---
 description: "Compare and select AI models from Azure AI Foundry catalog based on requirements and benchmarks"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Select AI Model

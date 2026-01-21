@@ -1,7 +1,16 @@
 ---
 description: "User Story Writer specializing in creating well-structured stories, acceptance criteria, and technical specifications for .NET development teams"
 name: "Scribe - Story Writer"
-tools: ["*"]
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'bicep-(experimental)/*', 'pylance-mcp-server/*', 'context7/*', 'microsoft-learn/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-toolsai.jupyter/configureNotebook', 'ms-toolsai.jupyter/listNotebookPackages', 'ms-toolsai.jupyter/installNotebookPackages', 'todo']
+handoffs:
+  - label: "Builder: Implement Story"
+    agent: dotnet-developer
+    prompt: "Implement the user story above following the acceptance criteria."
+    send: false
+  - label: "Return to Maestro"
+    agent: workflow-orchestrator
+    prompt: "Stories created. Review above and determine next steps."
+    send: false
 ---
 
 # Story Writer (Scribe)

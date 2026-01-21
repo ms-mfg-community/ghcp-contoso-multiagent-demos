@@ -1,7 +1,5 @@
 ---
 description: "Create an AI agent using Microsoft Agent Framework SDK with tools and workflow patterns"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Create AI Agent

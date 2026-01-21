@@ -77,7 +77,7 @@ You are writing Lab Module 2 for a multi-agent orchestration tutorial.
    ```
 
 2. Write section 2.1: Analyzing the Existing Codebase
-   - Use @Scout agent to explore the Contoso University structure
+   - Use Scout agent to explore the Contoso University structure
    - Identify the current instructor and student views
    - Document what currently exists (read-only grade display)
    - Exercise: Ask Scout to analyze InstructorsController.cs
@@ -92,7 +92,7 @@ You are writing Lab Module 2 for a multi-agent orchestration tutorial.
 
 4. Write section 2.3: Creating Your Epic
    - Define the feature: "Enable instructors to update student grades"
-   - Use @Scribe agent to help structure the epic
+   - Use Scribe agent to help structure the epic
    - Create epic file in docs/epics/
    - Include: Overview, 3-4 stories, progress tracker
    - Sequential workflow: Scout → Scribe

@@ -1,7 +1,28 @@
 ---
 description: "Azure Development Orchestrator providing cross-domain guidance, task decomposition, and coordination across infrastructure, AI, data, and testing specialists"
 name: "Conductor - Azure Suite Orchestrator"
-tools: ["*"]
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'bicep-(experimental)/*', 'pylance-mcp-server/*', 'context7/*', 'microsoft-learn/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-toolsai.jupyter/configureNotebook', 'ms-toolsai.jupyter/listNotebookPackages', 'ms-toolsai.jupyter/installNotebookPackages', 'todo']
+handoffs:
+  - label: "Stratus: Infrastructure"
+    agent: azure-infrastructure
+    prompt: "Design and implement the Azure infrastructure based on the plan above."
+    send: false
+  - label: "Nexus: Agent Development"
+    agent: agent-framework
+    prompt: "Implement the AI agent workflow based on the plan above."
+    send: false
+  - label: "Prism: Data Platform"
+    agent: fabric-data
+    prompt: "Design the data architecture in Microsoft Fabric based on the plan above."
+    send: false
+  - label: "Forge: AI Platform"
+    agent: ai-foundry
+    prompt: "Configure the Microsoft Foundry platform based on the plan above."
+    send: false
+  - label: "Sentinel: Testing"
+    agent: azure-testing
+    prompt: "Design and implement the testing strategy based on the plan above."
+    send: false
 ---
 
 # Azure Suite Orchestrator (Conductor)

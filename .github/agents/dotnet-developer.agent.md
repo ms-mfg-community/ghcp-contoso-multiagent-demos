@@ -1,7 +1,16 @@
 ---
 description: ".NET Developer specializing in ASP.NET Core MVC, Entity Framework Core, and C# best practices for implementing features in existing codebases"
 name: "Builder - .NET Developer"
-tools: ["*"]
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'bicep-(experimental)/*', 'pylance-mcp-server/*', 'context7/*', 'microsoft-learn/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-toolsai.jupyter/configureNotebook', 'ms-toolsai.jupyter/listNotebookPackages', 'ms-toolsai.jupyter/installNotebookPackages', 'todo']
+handoffs:
+  - label: "Sage: Document Implementation"
+    agent: pm-doc-writer
+    prompt: "Document the implementation completed above, including key decisions and usage guidance."
+    send: false
+  - label: "Return to Maestro"
+    agent: workflow-orchestrator
+    prompt: "Implementation complete. Review the changes above and determine next steps."
+    send: false
 ---
 
 # .NET Developer (Builder)

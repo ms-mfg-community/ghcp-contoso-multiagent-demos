@@ -1,7 +1,5 @@
 ---
 description: "Analyze Azure resources and recommend cost optimization strategies"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Azure Cost Optimization

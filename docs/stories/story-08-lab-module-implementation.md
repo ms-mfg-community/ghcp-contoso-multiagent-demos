@@ -14,7 +14,7 @@ Write the fourth lab module that teaches learners how to execute stories using m
 - [x] AC2: Duration estimate included (30-45 minutes)
 - [x] AC3: Section 4.1 covers single-session implementation workflow
 - [x] AC4: Section 4.2 covers multi-session handoffs with handoff document creation
-- [x] AC5: Section 4.3 demonstrates executing one complete story with @Builder
+- [x] AC5: Section 4.3 demonstrates executing one complete story with Builder
 - [x] AC6: Section 4.4 covers progress tracking and epic updates
 - [x] AC7: Includes handoff document template and example
 
@@ -98,9 +98,9 @@ New file needed:
    - Create handoff document template
    - Exercise: Create a handoff mid-implementation
 
-4. Write section 4.3: Implementing with @Builder
+4. Write section 4.3: Implementing with Builder
    - Load the backend story prompt
-   - Execute with @Builder agent
+   - Execute with Builder agent
    - Watch the agent make changes
    - Verify acceptance criteria
    - Handle any issues that arise
@@ -151,14 +151,14 @@ New file needed:
 - AC2: ✓ Duration: 30-45 minutes included
 - AC3: ✓ Section 4.1 covers single-session workflow (when to use, workflow diagram, GradeExtensions exercise)
 - AC4: ✓ Section 4.2 covers multi-session handoffs (when needed, structure diagram, template, exercise)
-- AC5: ✓ Section 4.3 demonstrates @Builder execution (Story A backend implementation, Story B frontend exercise)
+- AC5: ✓ Section 4.3 demonstrates Builder execution (Story A backend implementation, Story B frontend exercise)
 - AC6: ✓ Section 4.4 covers progress tracking (status updates, epic tracker, completion handoffs, lessons learned)
 - AC7: ✓ Handoff document template at line 232, example usage at lines 239 and 312
 
 **Lab Structure**:
 - 4.1: Single-Session Implementation - workflow, when to use, GradeExtensions exercise
 - 4.2: Multi-Session Handoffs - structure, template, mid-implementation exercise
-- 4.3: Implementing with @Builder - full Story A execution, Story B exercise
+- 4.3: Implementing with Builder - full Story A execution, Story B exercise
 - 4.4: Progress Tracking - status updates, epic progress, completion handoffs, lessons learned
 - Summary with complete workflow diagram
 

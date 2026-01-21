@@ -39,11 +39,11 @@ Scout (the Brownfield Analyst agent) is designed specifically for exploring and 
 Let's use Scout to analyze a key file in the Contoso University application.
 
 1. Open GitHub Copilot Chat (Ctrl+Alt+I / Cmd+Alt+I)
-2. Invoke Scout by typing `@Scout` or `@brownfield-analyst`
+2. Click the agent dropdown and select **Scout** (or **Brownfield Analyst**)
 3. Ask Scout to analyze the instructors controller:
 
 ```
-@Scout Please analyze the ContosoUniversity/Controllers/InstructorsController.cs file.
+Analyze the ContosoUniversity/Controllers/InstructorsController.cs file.
 
 Focus on:
 1. What CRUD operations does it support?
@@ -81,10 +81,10 @@ A thorough Scout analysis might reveal:
 
 ### Exercise: Map the Data Flow
 
-Use Scout to trace how student enrollment data flows through the application.
+Use Scout to trace how student enrollment data flows through the application. Select **Scout** from the agent dropdown, then enter:
 
 ```
-@Scout Trace the data flow for student enrollments in this application.
+Trace the data flow for student enrollments in this application.
 
 1. Where is enrollment data stored (which model/entity)?
 2. Which views display enrollment information?
@@ -239,10 +239,10 @@ Based on Scout's analysis, we've identified this enhancement opportunity:
 
 ### Step 1: Scout Identifies the Enhancement Scope
 
-First, let's have Scout summarize what needs to change:
+First, let's have Scout summarize what needs to change. Select **Scout** from the agent dropdown, then enter:
 
 ```
-@Scout Based on your analysis of the Contoso University application, what would
+Based on your analysis of the Contoso University application, what would
 need to change to allow instructors to update student grades from the Instructor
 Index page?
 
@@ -278,10 +278,10 @@ Consider:
 
 ### Step 2: Scribe Structures the Epic
 
-Now use Scribe to formalize Scout's findings into a proper epic document:
+Now use Scribe to formalize Scout's findings into a proper epic document. Select **Scribe** from the agent dropdown, then enter:
 
 ```
-@Scribe Create an epic document for a "Grade Management Enhancement" feature
+Create an epic document for a "Grade Management Enhancement" feature
 for the Contoso University application.
 
 Context from Scout's analysis:
@@ -337,10 +337,10 @@ insight through calculated GPA display.
 
 ### Step 3: Validate Your Stories
 
-Before saving, validate the stories Scribe created against the project's story writing standards:
+Before saving, validate the stories Scribe created against the project's story writing standards. Select **Scribe** from the agent dropdown, then enter:
 
 ```
-@Scribe Evaluate Story S01 (Grade Update UI) against our story writing standards.
+Evaluate Story S01 (Grade Update UI) against our story writing standards.
 Use the rubric at docs/standards/story-writing-standards-rubric.md.
 Score each criterion and provide an overall verdict.
 ```
@@ -417,10 +417,10 @@ You've just completed a sequential multi-agent workflow:
 
 ### Exercise: Extend the Epic
 
-Try adding another story to the epic using Scribe:
+Try adding another story to the epic using Scribe. Select **Scribe** from the agent dropdown, then enter:
 
 ```
-@Scribe Add a story to the Grade Management epic for input validation.
+Add a story to the Grade Management epic for input validation.
 
 The story should ensure:
 - Only valid grade values (A, B, C, D, F, or null) are accepted
@@ -449,9 +449,9 @@ The story should ensure:
 
 Epic creation often spans multiple sessions. If you need to pause work:
 
-1. Use the handoff prompt to preserve context:
+1. Use the handoff prompt to preserve context. Select **Sage** from the agent dropdown, then enter:
    ```
-   @Sage Create a handoff document for the Grade Management epic.
+   Create a handoff document for the Grade Management epic.
    Use the template at docs/handoffs/handoff-template.md.
 
    Current state:

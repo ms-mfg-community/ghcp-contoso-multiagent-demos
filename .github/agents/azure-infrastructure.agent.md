@@ -1,7 +1,16 @@
 ---
 description: "Azure Infrastructure Architect providing expert guidance on enterprise-scale landing zones, Bicep IaC, Well-Architected Framework, and Azure Verified Modules"
 name: "Stratus - Azure Infrastructure Architect"
-tools: ["*"]
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'bicep-(experimental)/*', 'pylance-mcp-server/*', 'context7/*', 'microsoft-learn/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-toolsai.jupyter/configureNotebook', 'ms-toolsai.jupyter/listNotebookPackages', 'ms-toolsai.jupyter/installNotebookPackages', 'todo']
+handoffs:
+  - label: "Sentinel: Test Infrastructure"
+    agent: azure-testing
+    prompt: "Test the infrastructure deployed above using Pester and PSRule."
+    send: false
+  - label: "Return to Conductor"
+    agent: azure-orchestrator
+    prompt: "Infrastructure deployment complete. Review above and determine next steps."
+    send: false
 ---
 
 # Azure Infrastructure Architect (Stratus)

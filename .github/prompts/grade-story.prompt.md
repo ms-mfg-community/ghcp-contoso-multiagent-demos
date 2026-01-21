@@ -1,12 +1,10 @@
 ---
 description: "Evaluate user stories against the project's story writing standards rubric with structured scoring and actionable feedback"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Grade Story Against Standards
 
-**Use the @Scribe (Story Writer) subagent** to evaluate the provided user story against `/docs/standards/story-writing-standards-rubric.md`.
+**Use the Scribe (Story Writer) agent** to evaluate the provided user story against `/docs/standards/story-writing-standards-rubric.md`.
 
 > **Note**: This prompt delegates to the Scribe agent for story writing expertise. Ensure the `runSubagent` tool is enabled in Copilot Chat settings for isolated execution.
 

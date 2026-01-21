@@ -1,7 +1,5 @@
 ---
 description: "Generate tests for Azure infrastructure, APIs, load testing, or AI agents"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Create Tests

@@ -27,8 +27,10 @@ This document demonstrates a **sequential workflow** using the Scout → Scribe 
 
 ### Prompt
 
+Select **Scout** from the agent dropdown, then enter the prompt below:
+
 ```
-@Scout Analyze the Contoso University codebase for implementing a student search feature.
+Analyze the Contoso University codebase for implementing a student search feature.
 
 Focus on:
 1. Current Students list implementation (Index page)
@@ -94,8 +96,10 @@ Evaluate Scout's analysis against our standards. Does it provide:
 
 ### Prompt
 
+Select **Scribe** from the agent dropdown, then enter the prompt below:
+
 ```
-@Scribe Based on Scout's analysis at docs/analysis/student-search-analysis.md, write a complete user story for the Student Search feature.
+Based on Scout's analysis at docs/analysis/student-search-analysis.md, write a complete user story for the Student Search feature.
 
 Requirements:
 1. Follow the story template format
@@ -196,8 +200,10 @@ Ensure:
 
 ### Prompt
 
+Select **Builder** from the agent dropdown, then enter the prompt below:
+
 ```
-@Builder Implement user story US-001 (Student Search) following the story file at stories/US-001-student-search.md.
+Implement user story US-001 (Student Search) following the story file at stories/US-001-student-search.md.
 
 Requirements:
 1. Follow the exact acceptance criteria
@@ -300,8 +306,10 @@ Focus on:
 
 ### Prompt
 
+Select **Sage** from the agent dropdown, then enter the prompt below:
+
 ```
-@Sage Document the Student Search feature based on the implementation in StudentsController.cs and Views/Students/Index.cshtml.
+Document the Student Search feature based on the implementation in StudentsController.cs and Views/Students/Index.cshtml.
 
 Create:
 1. User-facing documentation explaining how to use the search

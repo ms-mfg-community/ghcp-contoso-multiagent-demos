@@ -79,7 +79,7 @@ You are writing Lab Module 3 for a multi-agent orchestration tutorial.
 
 3. Write section 3.2: Parallel Story Planning
    - When stories can be written in parallel (no dependencies)
-   - Using @Scribe for multiple story drafts
+   - Using Scribe for multiple story drafts
    - Identifying story dependencies
    - Exercise: Map dependencies for grade update stories
 

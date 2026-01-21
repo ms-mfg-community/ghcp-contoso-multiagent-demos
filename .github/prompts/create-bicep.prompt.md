@@ -1,7 +1,5 @@
 ---
 description: "Generate Bicep templates from requirements using Azure Verified Modules and best practices"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Create Bicep Template

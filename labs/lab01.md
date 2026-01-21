@@ -205,19 +205,19 @@ Beyond deciding between sequential and parallel execution, you also need to deci
 │                                                                  │
 │      YOU (Orchestrator)                                          │
 │        │                                                         │
-│        ├──▶ @Scout "Analyze the codebase"                       │
+│        ├──▶ Scout "Analyze the codebase"                        │
 │        │         └──▶ Returns analysis                          │
 │        │    [You review, decide what matters]                   │
 │        │                                                         │
-│        ├──▶ @Scribe "Create stories based on analysis"          │
+│        ├──▶ Scribe "Create stories based on analysis"           │
 │        │         └──▶ Returns stories                           │
 │        │    [You validate, refine, approve]                     │
 │        │                                                         │
-│        ├──▶ @Builder "Implement this story"                     │
+│        ├──▶ Builder "Implement this story"                      │
 │        │         └──▶ Returns code                              │
 │        │    [You review, test, iterate]                         │
 │        │                                                         │
-│        └──▶ @Sage "Document what we did"                        │
+│        └──▶ Sage "Document what we did"                         │
 │                  └──▶ Returns docs                              │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
@@ -234,7 +234,7 @@ Beyond deciding between sequential and parallel execution, you also need to deci
 │              Agent-Driven Orchestration                          │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│      YOU ──▶ @Maestro "Plan the grade management feature"       │
+│      YOU ──▶ Maestro "Plan the grade management feature"        │
 │                │                                                 │
 │                ▼                                                 │
 │         ┌─────────────┐                                         │
@@ -300,17 +300,21 @@ GitHub Copilot supports running agents as **subagents**—isolated agents that w
 
 **Sequential (dependent tasks):**
 ```
-@Scout Analyze Models/
+Select Scout from the agent dropdown, then enter:
+Analyze Models/
 [wait for result]
-@Scout Analyze Controllers/
+Analyze Controllers/
 [wait for result]
 ```
 
 **Parallel (independent tasks using subagents):**
+
+> **Note:** Parallel subagent execution requires enabling the `agent` tool. Select multiple independent prompts to run concurrently when tasks don't depend on each other.
+
 ```
-#runSubagent @Scout Analyze Models/ for entity patterns
-#runSubagent @Scout Analyze Controllers/ for action patterns
-#runSubagent @Scout Analyze Views/ for Razor patterns
+Analyze Models/ for entity patterns
+Analyze Controllers/ for action patterns
+Analyze Views/ for Razor patterns
 ```
 
 All three analyses run concurrently, and results return to your main conversation when complete.
@@ -331,10 +335,10 @@ All three analyses run concurrently, and results return to your main conversatio
 Let's see how Maestro plans a workflow and compare it to manual orchestration.
 
 1. Open GitHub Copilot Chat
-2. Invoke Maestro:
+2. Select **Maestro** from the agent dropdown, then enter:
 
 ```
-@Maestro Plan the implementation of a student search feature for the Contoso
+Plan the implementation of a student search feature for the Contoso
 University application. The feature should allow searching students by name
 from the Students Index page.
 ```
@@ -368,33 +372,33 @@ Enable searching students by name from the Students Index page.
 ## Phases
 
 ### Phase 1: Analysis
-**Specialist**: @Scout
-**Parallel opportunity**: Multiple Scout subagents for independent areas
+**Specialist**: Scout (select from agent dropdown)
+**Parallel opportunity**: Multiple independent analysis tasks
 
-**Sample Prompts**:
-> #runSubagent @Scout Analyze existing search patterns in the codebase
-> #runSubagent @Scout Analyze StudentsController.cs for Index action patterns
+**Sample Prompts** (select Scout, then enter):
+> Analyze existing search patterns in the codebase
+> Analyze StudentsController.cs for Index action patterns
 
 **Your quality gate**: Review analysis, confirm approach before stories
 
 ### Phase 2: Story Creation
-**Specialist**: @Scribe
-**Sample Prompt**:
-> @Scribe Create a user story for student search with acceptance criteria.
+**Specialist**: Scribe (select from agent dropdown)
+**Sample Prompt** (select Scribe, then enter):
+> Create a user story for student search with acceptance criteria.
 
 **Your quality gate**: Validate story against rubric, refine if needed
 
 ### Phase 3: Implementation
-**Specialist**: @Builder
-**Sample Prompt**:
-> @Builder Implement the student search story following existing patterns.
+**Specialist**: Builder (select from agent dropdown)
+**Sample Prompt** (select Builder, then enter):
+> Implement the student search story following existing patterns.
 
 **Your quality gate**: Review code, run tests, verify AC met
 
 ### Phase 4: Documentation
-**Specialist**: @Sage
-**Sample Prompt**:
-> @Sage Document the student search feature.
+**Specialist**: Sage (select from agent dropdown)
+**Sample Prompt** (select Sage, then enter):
+> Document the student search feature.
 
 **Your quality gate**: Verify documentation accuracy
 ```
@@ -484,12 +488,12 @@ tools:
 Let's try using Scout to analyze a file in the Contoso University codebase.
 
 1. Open GitHub Copilot Chat (Ctrl+Alt+I / Cmd+Alt+I)
-2. In the chat input, type `@` to see available agents
-3. Select `@Scout` (or `@brownfield-analyst`)
+2. Click the agent dropdown picker in the chat input area
+3. Select **Scout** (or **Brownfield Analyst**) from the dropdown
 4. Ask Scout to analyze a model file:
 
 ```
-@Scout Grade ContosoUniversity/Models/Student.cs against the coding standards rubric. Provide scores for each criterion and an overall verdict.
+Grade ContosoUniversity/Models/Student.cs against the coding standards rubric. Provide scores for each criterion and an overall verdict.
 ```
 
 5. Observe how Scout responds:
@@ -502,14 +506,14 @@ Let's try using Scout to analyze a file in the Contoso University codebase.
 
 Try invoking different agents and observe how their personalities and expertise differ:
 
-**Task 1:** Ask Scribe (story-writer) to draft a user story
+**Task 1:** Select **Scribe** from the agent dropdown and ask it to draft a user story:
 ```
-@Scribe Write a user story for adding a search feature to the Students list page.
+Write a user story for adding a search feature to the Students list page.
 ```
 
-**Task 2:** Ask Sage (pm-doc-writer) to explain a concept
+**Task 2:** Select **Sage** from the agent dropdown and ask it to explain a concept:
 ```
-@Sage Explain what Entity Framework migrations are and when to use them.
+Explain what Entity Framework migrations are and when to use them.
 ```
 
 **Reflection questions:**

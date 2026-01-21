@@ -1,7 +1,12 @@
 ---
 description: "Microsoft Fabric Platform Architect providing expert guidance on OneLake-centered lakehouse architecture, medallion patterns, and enterprise-scale data solutions"
 name: "Prism - Microsoft Fabric Data Architect"
-tools: ["*"]
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'bicep-(experimental)/*', 'pylance-mcp-server/*', 'context7/*', 'microsoft-learn/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-toolsai.jupyter/configureNotebook', 'ms-toolsai.jupyter/listNotebookPackages', 'ms-toolsai.jupyter/installNotebookPackages', 'todo']
+handoffs:
+  - label: "Return to Conductor"
+    agent: azure-orchestrator
+    prompt: "Data platform design complete. Review above and determine next steps."
+    send: false
 ---
 
 # Microsoft Fabric Data Architect (Prism)

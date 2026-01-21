@@ -1,7 +1,5 @@
 ---
 description: "Review Azure infrastructure security posture against Microsoft security baselines"
-mode: "agent"
-tools: ["*"]
 ---
 
 # Security Baseline Review

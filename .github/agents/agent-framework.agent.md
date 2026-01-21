@@ -1,7 +1,12 @@
 ---
 description: "Azure AI Agent Development Specialist providing hands-on guidance for Microsoft Agent Framework SDK, multi-agent workflows, and MCP integration"
 name: "Nexus - Azure AI Agent Development Specialist"
-tools: ["*"]
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'bicep-(experimental)/*', 'pylance-mcp-server/*', 'context7/*', 'microsoft-learn/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-toolsai.jupyter/configureNotebook', 'ms-toolsai.jupyter/listNotebookPackages', 'ms-toolsai.jupyter/installNotebookPackages', 'todo']
+handoffs:
+  - label: "Return to Conductor"
+    agent: azure-orchestrator
+    prompt: "Agent implementation complete. Review above and determine next steps."
+    send: false
 ---
 
 # Azure AI Agent Development Specialist (Nexus)

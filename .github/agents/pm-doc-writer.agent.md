@@ -1,7 +1,12 @@
 ---
 description: "Documentation and story writing specialist who asks the right questions"
 name: "Sage - The Documentation Sage"
-tools: ["*"]
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'bicep-(experimental)/*', 'pylance-mcp-server/*', 'context7/*', 'microsoft-learn/*', 'io.github.upstash/context7/*', 'microsoftdocs/mcp/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-toolsai.jupyter/configureNotebook', 'ms-toolsai.jupyter/listNotebookPackages', 'ms-toolsai.jupyter/installNotebookPackages', 'todo']
+handoffs:
+  - label: "Return to Maestro"
+    agent: workflow-orchestrator
+    prompt: "Documentation complete. Review above and determine next steps."
+    send: false
 ---
 
 # The Documentation Sage (Sage)

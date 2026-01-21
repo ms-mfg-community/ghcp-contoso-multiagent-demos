@@ -272,13 +272,15 @@ In this map:
 
 When you have multiple independent stories:
 
-1. **Draft all stories first** using @Scribe
+1. **Draft all stories first** using Scribe
 2. **Identify the dependency graph**
 3. **Execute independent stories simultaneously**
 4. **Execute dependent stories when predecessors complete**
 
+Select **Scribe** from the agent dropdown, then enter the prompt below.
+
 ```
-@Scribe Create three stories for the grade management epic:
+Create three stories for the grade management epic:
 1. Backend: Add UpdateGrade controller action
 2. Frontend: Add grade dropdown to Instructor Index
 3. Enhancement: Add GPA calculation to Student Details
@@ -319,10 +321,12 @@ For the Grade Management epic, determine which stories can run in parallel:
 
 ### Using Scribe for Batch Story Creation
 
-Scribe can draft multiple stories in a single interaction:
+Scribe can draft multiple stories in a single interaction.
+
+Select **Scribe** from the agent dropdown, then enter the prompt below.
 
 ```
-@Scribe Create implementation stories for these features from the Grade
+Create implementation stories for these features from the Grade
 Management epic. For each story, provide:
 - Summary
 - Assigned agent
@@ -360,10 +364,12 @@ Now let's create complete stories for the grade management feature. Each story w
 
 ### Story A: Backend - UpdateGrade Action
 
-Let's use Scribe to create the backend story:
+Let's use Scribe to create the backend story.
+
+Select **Scribe** from the agent dropdown, then enter the prompt below.
 
 ```
-@Scribe Create a story for adding the UpdateGrade action to InstructorsController.
+Create a story for adding the UpdateGrade action to InstructorsController.
 
 Context:
 - Contoso University .NET MVC application
@@ -448,10 +454,12 @@ You are implementing the grade update backend for Contoso University.
 
 ### Story B: Frontend - Grade Editing UI
 
-Now the frontend story that depends on Story A:
+Now the frontend story that depends on Story A.
+
+Select **Scribe** from the agent dropdown, then enter the prompt below.
 
 ```
-@Scribe Create a story for adding grade editing UI to the Instructor Index page.
+Create a story for adding grade editing UI to the Instructor Index page.
 
 Context:
 - Builds on Story A (UpdateGrade action must exist)
@@ -541,10 +549,12 @@ You are implementing the grade editing UI for Contoso University.
 
 ### Story C: GPA Calculation
 
-This story is independent and can be worked in parallel with Story A:
+This story is independent and can be worked in parallel with Story A.
+
+Select **Scribe** from the agent dropdown, then enter the prompt below.
 
 ```
-@Scribe Create a story for adding GPA calculation to the Student Details page.
+Create a story for adding GPA calculation to the Student Details page.
 
 Context:
 - Independent of the grade update feature
@@ -645,10 +655,12 @@ You are implementing GPA calculation for Contoso University.
 
 ### Validating Stories Before Execution
 
-Before executing stories with Builder, validate them against the story writing standards:
+Before executing stories with Builder, validate them against the story writing standards.
+
+Select **Scribe** from the agent dropdown, then enter the prompt below.
 
 ```
-@Scribe Evaluate Story A (Backend - UpdateGrade Action) against our story
+Evaluate Story A (Backend - UpdateGrade Action) against our story
 writing standards rubric at docs/standards/story-writing-standards-rubric.md.
 
 Score each of the 5 criteria and provide:
@@ -696,8 +708,10 @@ Score each of the 5 criteria and provide:
 
 **If a story needs refinement:**
 
+Select **Scribe** from the agent dropdown, then enter the prompt below.
+
 ```
-@Scribe Story A scored 5/10 on Technical Detail Sufficiency.
+Story A scored 5/10 on Technical Detail Sufficiency.
 Please enhance the story with:
 1. Specific file paths to modify
 2. Reference to similar existing implementations
@@ -717,7 +731,7 @@ With all three stories defined, here's the execution plan:
 │  ┌──────────────┐    ┌──────────────┐                          │
 │  │   Story A    │    │   Story C    │                          │
 │  │   Backend    │    │     GPA      │                          │
-│  │  @Builder    │    │   @Builder   │                          │
+│  │   Builder    │    │   Builder    │                          │
 │  └──────────────┘    └──────────────┘                          │
 │         │                                                        │
 │         ▼                                                        │
@@ -725,16 +739,16 @@ With all three stories defined, here's the execution plan:
 │  ┌──────────────┐                                               │
 │  │   Story B    │                                               │
 │  │   Frontend   │                                               │
-│  │  @Builder    │                                               │
+│  │   Builder    │                                               │
 │  └──────────────┘                                               │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-To execute a story, invoke Builder with the complete prompt:
+To execute a story, select **Builder** from the agent dropdown, then enter the complete prompt from the story.
 
 ```
-@Builder [paste the complete agent prompt from the story]
+[paste the complete agent prompt from the story]
 ```
 
 ### Knowledge Check
