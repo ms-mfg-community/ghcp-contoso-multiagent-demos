@@ -17,6 +17,7 @@ namespace ContosoUniversity.Tests.Controllers
     public class StudentsControllerTests
     {
         private readonly Mock<IRepository<Student>> _mockStudentRepository;
+        private readonly Mock<IGpaCalculationService> _mockGpaCalculationService;
         private readonly Mock<INotificationService> _mockNotificationService;
         private readonly Mock<ILogger<StudentsController>> _mockLogger;
         private readonly StudentsController _controller;
@@ -24,11 +25,13 @@ namespace ContosoUniversity.Tests.Controllers
         public StudentsControllerTests()
         {
             _mockStudentRepository = new Mock<IRepository<Student>>();
+            _mockGpaCalculationService = new Mock<IGpaCalculationService>();
             _mockNotificationService = new Mock<INotificationService>();
             _mockLogger = new Mock<ILogger<StudentsController>>();
 
             _controller = new StudentsController(
                 _mockStudentRepository.Object,
+                _mockGpaCalculationService.Object,
                 _mockNotificationService.Object,
                 _mockLogger.Object);
         }

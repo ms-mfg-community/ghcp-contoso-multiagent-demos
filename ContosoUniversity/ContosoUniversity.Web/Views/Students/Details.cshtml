@@ -29,6 +29,20 @@
             @Html.DisplayFor(model => model.EnrollmentDate)
         </dd>
         <dt>
+            GPA
+        </dt>
+        <dd>
+            @if (ViewBag.CompletedCredits > 0)
+            {
+                <strong>@ViewBag.Gpa.ToString("F2")</strong>
+                <span class="text-muted">(based on @ViewBag.CompletedCredits completed credits)</span>
+            }
+            else
+            {
+                <span class="text-muted">N/A (no completed credits)</span>
+            }
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Enrollments)
         </dt>
         <dd>
