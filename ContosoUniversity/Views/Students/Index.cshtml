@@ -33,12 +33,16 @@
             <th>
                 @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
+            <th>
+                GPA
+            </th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+            var studentGpa = ViewBag.StudentGpas[item.ID];
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.LastName)
@@ -48,6 +52,16 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                <td>
+                    @if (studentGpa.Credits > 0)
+                    {
+                        @studentGpa.Gpa.ToString("F2")
+                    }
+                    else
+                    {
+                        <span class="text-muted">N/A</span>
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-sm" })
