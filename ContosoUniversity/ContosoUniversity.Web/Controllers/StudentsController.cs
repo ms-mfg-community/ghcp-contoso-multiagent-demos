@@ -74,9 +74,12 @@ namespace ContosoUniversity.Web.Controllers
                 return BadRequest();
             }
 
-            // For now, we'll use GetByIdAsync for the student and handle enrollments separately
-            // In a real application, we would modify the repository to support eager loading
-            var student = await _studentRepository.GetByIdAsync(id.Value);
+            // Use eager loading to get student with enrollments and courses in a single query
+            var student = await _studentRepository.GetByIdWithIncludesAsync(
+                id.Value, 
+                s => s.Enrollments
+            );
+            
             if (student == null)
             {
                 return NotFound();

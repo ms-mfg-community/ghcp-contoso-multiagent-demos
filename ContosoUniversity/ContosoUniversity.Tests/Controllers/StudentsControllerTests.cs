@@ -43,9 +43,10 @@ namespace ContosoUniversity.Tests.Controllers
                 new Student { ID = 2, FirstMidName = "Jane", LastName = "Smith", EnrollmentDate = DateTime.Parse("2020-09-01") }
             };
 
+            // Mock GetQueryable to return IQueryable
             _mockStudentRepository
-                .Setup(repo => repo.GetAllAsync())
-                .ReturnsAsync(students);
+                .Setup(repo => repo.GetQueryable())
+                .Returns(students.AsQueryable());
 
             // Act
             var result = await _controller.Index("", "", "", 1);
@@ -93,7 +94,7 @@ namespace ContosoUniversity.Tests.Controllers
             };
 
             _mockStudentRepository
-                .Setup(repo => repo.GetByIdAsync(id))
+                .Setup(repo => repo.GetByIdWithIncludesAsync(id, It.IsAny<System.Linq.Expressions.Expression<Func<Student, object>>[]>()))
                 .ReturnsAsync(students.First());
 
             // Act
