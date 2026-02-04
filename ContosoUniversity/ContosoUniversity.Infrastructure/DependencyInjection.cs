@@ -22,6 +22,9 @@ namespace ContosoUniversity.Infrastructure
             // Add Repositories
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+            // Add GPA Calculation Service
+            services.AddScoped<IGpaCalculationService, GpaCalculationService>();
+
             // Configure options
             services.Configure<Configuration.ServiceBusOptions>(options => 
             {

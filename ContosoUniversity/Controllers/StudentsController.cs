@@ -6,11 +6,20 @@ using System.Web.Mvc;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using System.Diagnostics;
+using ContosoUniversity.Infrastructure.Services;
 
 namespace ContosoUniversity.Controllers
 {
     public class StudentsController : BaseController
     {
+        private readonly GpaCalculationService _gpaCalculationService;
+
+        public StudentsController()
+        {
+            // Initialize GPA calculation service
+            // Note: In legacy MVC without full DI, we instantiate directly
+            _gpaCalculationService = new GpaCalculationService();
+        }
         // GET: Students - Admins and Teachers can view
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -29,8 +38,11 @@ namespace ContosoUniversity.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in db.Students
-                           select s;
+            // Eager load enrollments and courses for GPA calculation
+            var students = db.Students
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course)
+                .AsQueryable();
             
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -56,7 +68,33 @@ namespace ContosoUniversity.Controllers
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(PaginatedList<Student>.Create(students, pageNumber, pageSize));
+            var paginatedStudents = PaginatedList<Student>.Create(students, pageNumber, pageSize);
+
+            // Calculate GPA for each student on current page
+            var studentGpas = new System.Collections.Generic.Dictionary<int, dynamic>();
+            foreach (var student in paginatedStudents)
+            {
+                var gpa = _gpaCalculationService.CalculateGpa(
+                    student.Enrollments.Select(e => new ContosoUniversity.Core.Models.Enrollment
+                    {
+                        Grade = e.Grade.HasValue ? (ContosoUniversity.Core.Models.Grade?)e.Grade.Value : null,
+                        Course = new ContosoUniversity.Core.Models.Course
+                        {
+                            Credits = e.Course.Credits
+                        }
+                    })
+                );
+                
+                var completedCredits = student.Enrollments
+                    .Where(e => e.Grade.HasValue)
+                    .Sum(e => e.Course?.Credits ?? 0);
+
+                studentGpas[student.ID] = new { Gpa = gpa, Credits = completedCredits };
+            }
+
+            ViewBag.StudentGpas = studentGpas;
+
+            return View(paginatedStudents);
         }
 
         // GET: Students/Details/5 - Admins and Teachers can view details
@@ -66,14 +104,38 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
+            // Eager load enrollments and courses for GPA calculation
             Student student = db.Students
                 .Include(s => s.Enrollments)
                     .ThenInclude(e => e.Course)
-                .Where(s => s.ID == id).Single();
+                .Where(s => s.ID == id).SingleOrDefault();
+            
             if (student == null)
             {
                 return HttpNotFound();
             }
+
+            // Calculate GPA and completed credits
+            var gpa = _gpaCalculationService.CalculateGpa(
+                student.Enrollments.Select(e => new ContosoUniversity.Core.Models.Enrollment
+                {
+                    Grade = e.Grade.HasValue ? (ContosoUniversity.Core.Models.Grade?)e.Grade.Value : null,
+                    Course = new ContosoUniversity.Core.Models.Course
+                    {
+                        Credits = e.Course.Credits
+                    }
+                })
+            );
+            
+            var completedCredits = student.Enrollments
+                .Where(e => e.Grade.HasValue)
+                .Sum(e => e.Course?.Credits ?? 0);
+
+            // Pass GPA data to view
+            ViewBag.Gpa = gpa;
+            ViewBag.CompletedCredits = completedCredits;
+
             return View(student);
         }
 

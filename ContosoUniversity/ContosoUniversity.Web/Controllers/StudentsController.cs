@@ -15,14 +15,17 @@ namespace ContosoUniversity.Web.Controllers
     public class StudentsController : BaseController
     {
         private readonly IRepository<Student> _studentRepository;
+        private readonly IGpaCalculationService _gpaCalculationService;
         private readonly new ILogger<StudentsController> _logger;
 
         public StudentsController(
             IRepository<Student> studentRepository,
+            IGpaCalculationService gpaCalculationService,
             INotificationService notificationService,
             ILogger<StudentsController> logger) : base(notificationService, logger)
         {
             _studentRepository = studentRepository;
+            _gpaCalculationService = gpaCalculationService;
             _logger = logger;
         }
 
@@ -45,7 +48,10 @@ namespace ContosoUniversity.Web.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            var studentsQuery = _studentRepository.GetQueryable();
+            // Eager load enrollments and courses for GPA calculation
+            IQueryable<Student> studentsQuery = _studentRepository.GetQueryable()
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course);
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -62,7 +68,23 @@ namespace ContosoUniversity.Web.Controllers
             };
 
             int pageSize = 10;
-            return View(await PaginatedList<Student>.CreateAsync(studentsQuery, pageNumber ?? 1, pageSize));
+            var students = await PaginatedList<Student>.CreateAsync(studentsQuery, pageNumber ?? 1, pageSize);
+
+            // Calculate GPA for each student on current page
+            var studentGpas = new System.Collections.Generic.Dictionary<int, dynamic>();
+            foreach (var student in students)
+            {
+                var gpa = _gpaCalculationService.CalculateGpa(student.Enrollments);
+                var completedCredits = student.Enrollments
+                    .Where(e => e.Grade.HasValue)
+                    .Sum(e => e.Course?.Credits ?? 0);
+
+                studentGpas[student.ID] = new { Gpa = gpa, Credits = completedCredits };
+            }
+
+            ViewBag.StudentGpas = studentGpas;
+
+            return View(students);
         }
 
         // GET: Students/Details/5
@@ -74,13 +96,26 @@ namespace ContosoUniversity.Web.Controllers
                 return BadRequest();
             }
 
-            // For now, we'll use GetByIdAsync for the student and handle enrollments separately
-            // In a real application, we would modify the repository to support eager loading
-            var student = await _studentRepository.GetByIdAsync(id.Value);
+            // Use eager loading to get student with enrollments and courses in a single query
+            var student = await _studentRepository.GetByIdWithIncludesAsync(
+                id.Value, 
+                s => s.Enrollments
+            );
+            
             if (student == null)
             {
                 return NotFound();
             }
+
+            // Calculate GPA and completed credits
+            var gpa = _gpaCalculationService.CalculateGpa(student.Enrollments);
+            var completedCredits = student.Enrollments
+                .Where(e => e.Grade.HasValue)
+                .Sum(e => e.Course?.Credits ?? 0);
+
+            // Pass GPA data to view
+            ViewBag.Gpa = gpa;
+            ViewBag.CompletedCredits = completedCredits;
 
             return View(student);
         }

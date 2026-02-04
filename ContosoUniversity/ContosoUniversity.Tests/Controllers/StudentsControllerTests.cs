@@ -17,6 +17,7 @@ namespace ContosoUniversity.Tests.Controllers
     public class StudentsControllerTests
     {
         private readonly Mock<IRepository<Student>> _mockStudentRepository;
+        private readonly Mock<IGpaCalculationService> _mockGpaCalculationService;
         private readonly Mock<INotificationService> _mockNotificationService;
         private readonly Mock<ILogger<StudentsController>> _mockLogger;
         private readonly StudentsController _controller;
@@ -24,11 +25,13 @@ namespace ContosoUniversity.Tests.Controllers
         public StudentsControllerTests()
         {
             _mockStudentRepository = new Mock<IRepository<Student>>();
+            _mockGpaCalculationService = new Mock<IGpaCalculationService>();
             _mockNotificationService = new Mock<INotificationService>();
             _mockLogger = new Mock<ILogger<StudentsController>>();
 
             _controller = new StudentsController(
                 _mockStudentRepository.Object,
+                _mockGpaCalculationService.Object,
                 _mockNotificationService.Object,
                 _mockLogger.Object);
         }
@@ -43,9 +46,10 @@ namespace ContosoUniversity.Tests.Controllers
                 new Student { ID = 2, FirstMidName = "Jane", LastName = "Smith", EnrollmentDate = DateTime.Parse("2020-09-01") }
             };
 
+            // Mock GetQueryable to return IQueryable
             _mockStudentRepository
-                .Setup(repo => repo.GetAllAsync())
-                .ReturnsAsync(students);
+                .Setup(repo => repo.GetQueryable())
+                .Returns(students.AsQueryable());
 
             // Act
             var result = await _controller.Index("", "", "", 1);
@@ -93,7 +97,7 @@ namespace ContosoUniversity.Tests.Controllers
             };
 
             _mockStudentRepository
-                .Setup(repo => repo.GetByIdAsync(id))
+                .Setup(repo => repo.GetByIdWithIncludesAsync(id, It.IsAny<System.Linq.Expressions.Expression<Func<Student, object>>[]>()))
                 .ReturnsAsync(students.First());
 
             // Act

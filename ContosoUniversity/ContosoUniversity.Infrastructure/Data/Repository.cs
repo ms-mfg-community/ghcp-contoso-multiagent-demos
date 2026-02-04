@@ -36,6 +36,21 @@ namespace ContosoUniversity.Infrastructure.Repositories
             return await _dbSet.FindAsync(id);
         }
 
+        public async Task<T?> GetByIdWithIncludesAsync(int id, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _dbSet;
+            
+            // Apply all includes to eagerly load related entities
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+            
+            // Use FirstOrDefaultAsync with a predicate since FindAsync doesn't support includes
+            // We need to use EF.Property to dynamically access the ID property
+            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "ID") == id);
+        }
+
         public async Task<T> AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
