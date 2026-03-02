@@ -22,6 +22,8 @@ By completing this lab, you will learn how to:
 | .NET SDK | 8.0+ | Contoso University application |
 | Git | Latest | Version control |
 
+> **Tip:** A Dev Container is included for zero-config setup — just open in VS Code and select "Reopen in Container". See the [Lab Setup](/labs/setup.md) for details.
+
 ---
 
 ## Hands-on Labs
@@ -149,6 +151,8 @@ The `.vscode/mcp.json` file configures Model Context Protocol servers for VS Cod
 2. Work through labs sequentially (Lab 01 through Lab 04)
 3. Each lab builds on concepts from previous labs
 4. Create a GitHub Issue in your fork to track progress
+
+> **Note:** The Contoso University application source code is included in this repository under `ContosoUniversity/`. No additional cloning is required.
 
 ---
 

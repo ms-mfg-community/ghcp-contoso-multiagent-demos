@@ -13,22 +13,24 @@ References:
 
 Before starting this lab, ensure you have the following installed:
 
-| Requirement | Purpose |
-|-------------|---------|
-| VS Code | Primary IDE with GitHub Copilot integration |
-| GitHub Copilot subscription | Required for agent orchestration features |
-| Node.js 18+ | Required for MCP server execution |
-| .NET 8 SDK | Required for the Contoso University application |
-| Git | Version control |
+| Requirement | Version | Purpose |
+|-------------|---------|---------|
+| VS Code | Latest | Primary IDE with GitHub Copilot integration |
+| GitHub Copilot | Business/Enterprise | Required for agent orchestration features |
+| Node.js | 18+ | Required for MCP server execution |
+| .NET SDK | 8.0+ | Required for the Contoso University application |
+| Git | Latest | Version control |
+
+> **Tip:** A [Dev Container](https://containers.dev/) is included in this repository for zero-config setup. Open the repo in VS Code and select **"Reopen in Container"** when prompted, or use the Command Palette → **"Dev Containers: Reopen in Container"**. The container includes .NET 8 SDK, Node.js 18, and all recommended extensions pre-installed.
 
 ## Fork and Clone the Repository
 
-1. Fork the current repository [ghcp-contoso-university-lab](https://github.com/YOUR_ORG/ghcp-contoso-university-lab)
+1. Fork this repository from [ms-mfg-community/ghcp-contoso-multiagent-demos](https://github.com/ms-mfg-community/ghcp-contoso-multiagent-demos)
 
 2. Clone your forked repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/ghcp-contoso-university-lab.git
-   cd ghcp-contoso-university-lab
+   git clone https://github.com/YOUR_USERNAME/ghcp-contoso-multiagent-demos.git
+   cd ghcp-contoso-multiagent-demos
    ```
 
 3. Verify the `.github/` directory structure exists:
@@ -40,13 +42,6 @@ Before starting this lab, ensure you have the following installed:
    ├── skills/           # Reference knowledge for agents
    └── copilot-instructions.md
    ```
-4. In a sub directory clone:
-```bash
- [ghcp-contoso-university](https://github.com/ms-mfg-community/ghcp-contoso-university.git)
- cd ghcp-contoso-university
- git checkout local-testing
- ```
-
 ## Enable GitHub Copilot Custom Agents
 
 1. Open VS Code and ensure the GitHub Copilot extension is installed and active
@@ -91,7 +86,7 @@ Run through this checklist to confirm everything is working:
 - [ ] `.github/agents/` directory contains agent definitions
 - [ ] VS Code opened with GitHub Copilot extension active
 - [ ] Custom agents visible in Copilot Chat (type `@` to check)
-- [ ] .NET project builds: `dotnet build`
+- [ ] .NET project builds: `dotnet build ContosoUniversity/ContosoUniversity.sln`
 - [ ] (Optional) MCP servers connected
 
 ## Track Your Progress
