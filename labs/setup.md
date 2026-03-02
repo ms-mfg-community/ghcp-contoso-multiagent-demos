@@ -21,7 +21,73 @@ Before starting this lab, ensure you have the following installed:
 | .NET SDK | 8.0+ | Required for the Contoso University application |
 | Git | Latest | Version control |
 
-> **Tip:** A [Dev Container](https://containers.dev/) is included in this repository for zero-config setup. Open the repo in VS Code and select **"Reopen in Container"** when prompted, or use the Command Palette → **"Dev Containers: Reopen in Container"**. The container includes .NET 8 SDK, Node.js 18, and all recommended extensions pre-installed.
+> **Tip:** A [Dev Container](https://containers.dev/) is included in this repository for zero-config setup. Choose one of the options below based on your environment, or skip ahead to [manual setup](#fork-and-clone-the-repository).
+
+## Option A: GitHub Codespaces (Recommended)
+
+If your organization has [GitHub Codespaces](https://github.com/features/codespaces) enabled, this is the fastest way to get started — no local installs required.
+
+1. Navigate to your fork on GitHub (or the upstream repo if you have access)
+2. Click the green **Code** button → **Codespaces** tab → **Create codespace on main**
+3. Wait for the codespace to build (the devcontainer will install .NET 8, Node.js 18, and all extensions automatically)
+4. Once the VS Code editor loads in your browser (or desktop VS Code if configured), verify:
+   ```bash
+   dotnet --version    # Should show 8.x
+   node --version      # Should show v18.x or later
+   ```
+5. Build the solution:
+   ```bash
+   dotnet build ContosoUniversity/ContosoUniversity.sln
+   ```
+6. Skip ahead to [Enable GitHub Copilot Custom Agents](#enable-github-copilot-custom-agents)
+
+> **Note:** Codespaces usage may be subject to your organization's spending limits and policies.
+
+## Option B: Dev Container with Docker Desktop
+
+If you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed locally:
+
+1. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) in VS Code
+2. Clone the repository (see [Fork and Clone](#fork-and-clone-the-repository) below)
+3. Open the cloned folder in VS Code
+4. When prompted **"Reopen in Container"**, click it — or use the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) → **"Dev Containers: Reopen in Container"**
+5. Wait for the container to build and the solution to restore/build automatically
+6. Verify the setup:
+   ```bash
+   dotnet --version    # Should show 8.x
+   node --version      # Should show v18.x or later
+   ```
+7. Skip ahead to [Enable GitHub Copilot Custom Agents](#enable-github-copilot-custom-agents)
+
+## Option C: Dev Container with Podman
+
+If you cannot install Docker and use [Podman](https://podman.io/) instead:
+
+1. Install [Podman](https://podman.io/docs/installation) (and optionally [Podman Desktop](https://podman-desktop.io/))
+2. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) in VS Code
+3. Configure VS Code to use Podman as the container engine:
+   - Open VS Code Settings (`Ctrl+,` / `Cmd+,`)
+   - Search for **"Dev Containers: Docker Path"**
+   - Set the value to `podman`
+4. Clone the repository (see [Fork and Clone](#fork-and-clone-the-repository) below)
+5. Open the cloned folder in VS Code
+6. Use the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) → **"Dev Containers: Reopen in Container"**
+7. If using **rootless Podman** and you encounter permission issues, you may need to add the following to `.devcontainer/devcontainer.json`:
+   ```json
+   "runArgs": ["--userns=keep-id"]
+   ```
+8. Verify the setup:
+   ```bash
+   dotnet --version    # Should show 8.x
+   node --version      # Should show v18.x or later
+   ```
+9. Skip ahead to [Enable GitHub Copilot Custom Agents](#enable-github-copilot-custom-agents)
+
+> **Note:** Podman is not officially supported by the Dev Containers specification but works well in practice. See the [Podman Desktop guide](https://podman-desktop.io/blog/2025/05/05/vs-code-with-podman-desktop) for additional tips.
+
+## Option D: Manual Setup
+
+If you prefer not to use containers, install the [prerequisites](#prerequisites) above and follow the steps below.
 
 ## Fork and Clone the Repository
 
@@ -124,6 +190,17 @@ Create a GitHub Issue in your forked repository to track your lab progress:
 2. Ensure npx is available: `npx --version`
 3. Check your network connection
 4. Review the VS Code Output panel for MCP-related errors
+
+</details>
+
+<details>
+<summary>Dev Container not starting with Podman</summary>
+
+1. Verify Podman is running: `podman info`
+2. Ensure VS Code setting **"Dev Containers: Docker Path"** is set to `podman`
+3. For rootless Podman permission errors, add `"runArgs": ["--userns=keep-id"]` to `.devcontainer/devcontainer.json`
+4. On Windows, ensure Podman machine is started: `podman machine start`
+5. Check the VS Code Output panel → **Dev Containers** for detailed error logs
 
 </details>
 

@@ -22,7 +22,7 @@ By completing this lab, you will learn how to:
 | .NET SDK | 8.0+ | Contoso University application |
 | Git | Latest | Version control |
 
-> **Tip:** A Dev Container is included for zero-config setup — just open in VS Code and select "Reopen in Container". See the [Lab Setup](/labs/setup.md) for details.
+> **Tip:** A Dev Container is included for zero-config setup. Works with **GitHub Codespaces**, **Docker Desktop**, or **Podman**. See the [Lab Setup](/labs/setup.md) for step-by-step instructions for each option.
 
 ---
 
