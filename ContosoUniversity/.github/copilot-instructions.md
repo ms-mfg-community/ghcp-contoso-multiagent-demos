@@ -1,0 +1,1 @@
+When performing code review, ignore files in the ```reports/``` directory

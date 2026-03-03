@@ -1,0 +1,26 @@
+{
+  "name": "Contoso University Lab",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-dotnettools.vscode-dotnet-runtime"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "dotnet restore ContosoUniversity/ContosoUniversity.sln && dotnet build ContosoUniversity/ContosoUniversity.sln",
+  "forwardPorts": [5000, 5001],
+  "remoteUser": "vscode"
+}

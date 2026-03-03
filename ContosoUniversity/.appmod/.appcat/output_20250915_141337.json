@@ -1,0 +1,1219 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "Any",
+    "runConfig": {
+      "analysis": {
+        "settings": {
+          "binaries": {
+            "useDefaultExclusions": true,
+            "include": [],
+            "exclude": [
+              "**/csc.*",
+              "**/csi.*",
+              "**/EntityFramework.*",
+              "**/EntityFramework*",
+              "**/Microsoft*",
+              "**/mscorlib.*",
+              "**/netstandard.*",
+              "**/System*",
+              "**/vbc.*",
+              "**/VBCSCompiler.*",
+              "**/Yarp.ReverseProxy*"
+            ]
+          }
+        },
+        "rules": [
+          {
+            "id": "Database.0101",
+            "description": "You are using Amazon S3 database that is not supported in Azure. You can use Azure Blob Storage instead. The following is the details link about Azure Blob Storage.",
+            "label": "Amazon S3 dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Blob Storage",
+                "url": "https://learn.microsoft.com/azure/storage/blobs"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0102",
+            "description": "You are using Oracle database that is not supported in Azure. You can use Azure PostgreSQL instead. The following is the details link about Azure PostgreSQL.",
+            "label": "Oracle dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure PostgreSQL",
+                "url": "https://learn.microsoft.com/azure/postgresql/flexible-server"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0103",
+            "description": "You are using DB2 database that is not supported in Azure. You can use Azure PostgreSQL instead. The following is the details link about Azure PostgreSQL.",
+            "label": "DB2 dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure PostgreSQL",
+                "url": "https://learn.microsoft.com/azure/postgresql/flexible-server"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0104",
+            "description": "You are using minio storage that is not supported in Azure. You can use Azure Blob Storage instead. The following is the details link about Azure Blob Storage.",
+            "label": "Minio dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Blob Storage",
+                "url": "https://learn.microsoft.com/azure/storage/blobs"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0105",
+            "description": "System.Data.SqlClient dependency is detected. While System.Data.SqlClient will work in Azure, the newer Microsoft.Data.SqlClient package is the primary .NET SQL client moving forward and receiving the latest features. For example, Microsoft.Data.SqlClient easily allows use of Azure Managed Identity from a connection string.",
+            "label": "System.Data.SqlClient dependency detected",
+            "severity": "Optional",
+            "effort": 3,
+            "state": "Active",
+            "links": [
+              {
+                "url": "https://go.microsoft.com/fwlink/?LinkID=2242668"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0106",
+            "description": "You are using Google Cloud Storage, which is not supported in Azure. You can use Azure Blob Storage instead. Refer to the following link for more details about Azure Blob Storage.",
+            "label": "Google Cloud Storage dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Blob Storage",
+                "url": "https://learn.microsoft.com/azure/storage/blobs"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Logging.0101",
+            "description": "Windows Event Log detected. Consider using OpenTelemetry for modern, cloud-native logging and observability. OpenTelemetry provides better portability, structured logging, and integration with Azure Monitor and Application Insights.",
+            "label": "Windows Event Log for logging detected",
+            "severity": "Potential",
+            "effort": 3,
+            "state": "Active",
+            "links": [
+              {
+                "title": "OpenTelemetry for .NET",
+                "url": "https://learn.microsoft.com/dotnet/core/diagnostics/observability-with-otel"
+              },
+              {
+                "title": "Azure Monitor OpenTelemetry",
+                "url": "https://learn.microsoft.com/azure/azure-monitor/app/opentelemetry-overview"
+              },
+              {
+                "title": "Migrate from Event Log to OpenTelemetry",
+                "url": "https://opentelemetry.io/docs/languages/net/getting-started/"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Logging.0102",
+            "description": "Serilog logging framework detected. While Serilog is a popular logging framework, consider migrating to OpenTelemetry for better cloud-native observability and standardized telemetry. OpenTelemetry provides unified logging, metrics, and tracing with better Azure integration.",
+            "label": "Serilog logging framework detected",
+            "severity": "Optional",
+            "effort": 4,
+            "state": "Active",
+            "links": [
+              {
+                "title": "OpenTelemetry for .NET",
+                "url": "https://learn.microsoft.com/dotnet/core/diagnostics/observability-with-otel"
+              },
+              {
+                "title": "Migrate from Serilog to OpenTelemetry",
+                "url": "https://opentelemetry.io/docs/languages/net/getting-started/"
+              },
+              {
+                "title": "Azure Monitor OpenTelemetry",
+                "url": "https://learn.microsoft.com/azure/azure-monitor/app/opentelemetry-overview"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Logging.0103",
+            "description": "Log4Net logging framework detected. Log4Net is an older logging framework with limited cloud-native capabilities. Consider migrating to OpenTelemetry for modern observability, better performance, and seamless Azure Monitor integration.",
+            "label": "Log4Net logging framework detected",
+            "severity": "Optional",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "OpenTelemetry for .NET",
+                "url": "https://learn.microsoft.com/dotnet/core/diagnostics/observability-with-otel"
+              },
+              {
+                "title": "Migrate from Log4Net to OpenTelemetry",
+                "url": "https://opentelemetry.io/docs/languages/net/getting-started/"
+              },
+              {
+                "title": "Azure Monitor OpenTelemetry",
+                "url": "https://learn.microsoft.com/azure/azure-monitor/app/opentelemetry-overview"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Queue.0101",
+            "description": "You are using local Kafka that is not supported in Azure. You can use Azure Kafka or Azure Event Hubs for Apache Kafka instead. The following is the details link about Azure Kafka and Azure Event Hubs for Apache Kafka.",
+            "label": "Local kafka dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Kafka",
+                "url": "https://learn.microsoft.com/en-us/azure/partner-solutions/apache-kafka-confluent-cloud/overview"
+              },
+              {
+                "title": "Azure Event Hubs for Apache Kafka",
+                "url": "https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-apache-kafka-overview"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Queue.0102",
+            "description": "Your application uses Amazon Simple Queue Service (SQS), which is not available in Azure. Use Azure Service Bus queues instead. Review the guidance below to plan and implement the migration (SDK, concepts, and feature differences).",
+            "label": "Amazon Simple Queue Service (SQS) dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Service Bus overview",
+                "url": "https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview"
+              },
+              {
+                "title": "Queues, topics, and subscriptions in Azure Service Bus",
+                "url": "https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
+              },
+              {
+                "title": "Quickstart: Send and receive messages with Service Bus queues (.NET)",
+                "url": "https://learn.microsoft.com/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues"
+              },
+              {
+                "title": ".NET SDK for Azure Service Bus (azure-messaging-servicebus)",
+                "url": "https://learn.microsoft.com/dotnet/api/overview/azure/messaging.servicebus-readme"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Security.0101",
+            "description": "Windows Authentication usage detected. The application is using Windows Authentication (Negotiate protocol) or System.DirectoryServices for Active Directory operations, which may not work as expected in Azure App Service. Consider using Azure Active Directory (Azure AD) authentication instead for better cloud compatibility and security.",
+            "label": "Windows Authentication dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure AD authentication for ASP.NET Core",
+                "url": "https://learn.microsoft.com/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp"
+              },
+              {
+                "title": "Migrate from Windows Authentication to Azure AD",
+                "url": "https://learn.microsoft.com/azure/active-directory/develop/scenario-web-app-sign-user-overview"
+              },
+              {
+                "title": "Microsoft Graph API for Directory Operations",
+                "url": "https://learn.microsoft.com/graph/api/overview"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Security.0102",
+            "description": "You are using AWS Secrets Manager, which is not supported in Azure. You can use Azure Key Vault instead. Refer to the following link for more details about Azure Key Vault.",
+            "label": "AWS Secrets Manager dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Key Vault",
+                "url": "https://learn.microsoft.com/azure/key-vault/general/overview"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Security.0103",
+            "description": "Certificate management packages or configurations detected. This may indicate the application is using local or custom certificate handling, which could require adjustments when migrating to Azure. Consider using Azure Key Vault Certificates for secure storage, lifecycle management, and integration with Azure services.",
+            "label": "Certificate management dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "About Azure Key Vault certificates",
+                "url": "https://learn.microsoft.com/azure/key-vault/certificates/about-certificates"
+              }
+            ],
+            "enabled": true
+          }
+        ],
+        "analyzers": [
+          {
+            "ruleId": "Database.0101",
+            "id": "Database.0101.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Amazon.S3.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0102",
+            "id": "Database.0102.Types",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "Oracle.DataAccess.Client.OracleConnection",
+                "Oracle.DataAccess.Client.DataTable",
+                "Oracle.DataAccess.Client.OracleDataAdapter"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0103",
+            "id": "Database.0103.Types",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "IBM.Data.DB2.DB2Command",
+                "IBM.Data.DB2.DB2Connection",
+                "IBM.Data.DB2.DB2DataReader"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0104",
+            "id": "Database.0104.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Minio",
+                "Minio.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0106",
+            "id": "Database.0106.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Google.Cloud.Storage.V1",
+                "Google.Cloud.Storage.V1.*",
+                "Google.Apis.Storage.v1",
+                "Google.Apis.Storage.v1.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Queue.0101",
+            "id": "Queue.0101.Types",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "Confluent.Kafka.IProducer",
+                "Confluent.Kafka.Producer",
+                "Confluent.Kafka.ProducerBuilder",
+                "Confluent.Kafka.ProducerConfig",
+                "Confluent.Kafka.IConsumer",
+                "Confluent.Kafka.Consumer",
+                "Confluent.Kafka.ConsumerBuilder",
+                "Confluent.Kafka.ConsumerConfig"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Queue.0101",
+            "id": "Queue.0101.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Confluent.Kafka.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Queue.0102",
+            "id": "Queue.0102.PackageReference",
+            "traits": "",
+            "state": "Active",
+            "kind": "packagereference",
+            "properties": {
+              "packages": {
+                "AWSSDK.SQS": null,
+                "Amazon.CDK.AWS.SQS": null
+              }
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Queue.0102",
+            "id": "Queue.0102.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Amazon.SQS",
+                "Amazon.CDK.AWS.SQS"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Queue.0102",
+            "id": "Queue.0102.Type",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "Amazon.SQS.AmazonSQSClient",
+                "Amazon.SQS.Model.SendMessageRequest",
+                "Amazon.SQS.Model.SendMessageResponse",
+                "Amazon.SQS.Model.ReceiveMessageRequest",
+                "Amazon.SQS.Model.ReceiveMessageResponse"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInCode",
+            "traits": "",
+            "state": "Active",
+            "kind": "literal",
+            "properties": {
+              "strings": [
+                "password",
+                "pwd",
+                "Password",
+                "Pwd",
+                "secret",
+                "Secret"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson1",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "password"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson2",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "Password"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson3",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "pwd"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson4",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "Pwd"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0101",
+            "id": "Security.0101.NegotiateNamespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Microsoft.AspNetCore.Authentication.Negotiate",
+                "Microsoft.AspNetCore.Authentication.Negotiate.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0101",
+            "id": "Security.0101.WebConfigAuth",
+            "traits": "",
+            "state": "Active",
+            "kind": "xml",
+            "properties": {
+              "paths": [
+                "authentication",
+                "location/authentication",
+                "system.web/authentication",
+                "location/system.web/authentication"
+              ],
+              "attributes": {
+                "mode": "Windows"
+              }
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0101",
+            "id": "Security.0101.DirectoryServicesNamespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "System.DirectoryServices",
+                "System.DirectoryServices.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0102",
+            "id": "Security.0102.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Amazon.SecretsManager",
+                "Amazon.SecretsManager.*",
+                "Amazon.CDK.AWS.SecretsManager",
+                "Amazon.CDK.AWS.SecretsManager.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0103",
+            "id": "Security.0103.Package",
+            "traits": "",
+            "state": "Active",
+            "kind": "packagereference",
+            "properties": {
+              "packages": {
+                "Pkcs12ProtectedConfigurationProvider": null,
+                "System.Security.Cryptography.X509Certificates": null,
+                "Certes": null,
+                "ITfoxtec.Identity.Saml2": null,
+                "System.Security.Cryptography.Xml": null,
+                "Microsoft.IdentityModel.Tokens": null
+              }
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0103",
+            "id": "Security.0103.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "System.Security.Cryptography.X509Certificates",
+                "System.Security.Cryptography.Pkcs",
+                "System.Security.Cryptography.Xml",
+                "Certes.*",
+                "ITfoxtec.Identity.Saml2.*",
+                "Microsoft.IdentityModel.Tokens"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0103",
+            "id": "Security.0103.NameInJson",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appsettings.json|appsettings.*.json",
+              "path": "CertificateStoreName"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0103",
+            "id": "Security.0103.LocationInJson",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appsettings.json|appsettings.*.json",
+              "path": "CertificateStoreLocation"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0105",
+            "id": "Database.0105.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "System.Data.SqlClient"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0105",
+            "id": "Database.0105.WebConfig",
+            "traits": "",
+            "state": "Active",
+            "kind": "xml",
+            "properties": {
+              "file": "web*.config",
+              "paths": [
+                "connectionStrings/add",
+                "entityFramework/providers/provider"
+              ],
+              "attributes": {
+                "providerName": "System.Data.SqlClient"
+              }
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Logging.0101",
+            "id": "Logging.0101.Types",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "System.Diagnostics.EventLog",
+                "System.Diagnostics.EventLogEntry",
+                "System.Diagnostics.EventLogEntryCollection",
+                "System.Diagnostics.EventLogEntryType",
+                "System.Diagnostics.EventLogTraceListener",
+                "System.Diagnostics.EventLogPermission",
+                "System.Diagnostics.EventLogPermissionAccess",
+                "System.Diagnostics.EventLogPermissionAttribute",
+                "System.Diagnostics.EventLogPermissionEntry",
+                "System.Diagnostics.EventLogPermissionEntryCollection",
+                "System.Diagnostics.EventSourceCreationData",
+                "System.Diagnostics.EventInstance",
+                "System.Diagnostics.OverflowAction",
+                "System.Diagnostics.EventLogInstaller"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Logging.0102",
+            "id": "Logging.0102.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Serilog",
+                "Serilog.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Logging.0103",
+            "id": "Logging.0103.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "log4net",
+                "log4net.*"
+              ]
+            },
+            "enabled": true
+          }
+        ]
+      },
+      "hash": "bf9600b0"
+    }
+  },
+  "analysisStartTime": "2025-09-15T20:13:51.6486257Z",
+  "analysisEndTime": "2025-09-15T20:13:56.3701459Z",
+  "privacyMode": "Unrestricted",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2271074",
+  "stats": {
+    "summary": {
+      "projects": 1,
+      "issues": 6,
+      "incidents": 25,
+      "effort": 75
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 13,
+        "Optional": 3,
+        "Potential": 9,
+        "Information": 0
+      },
+      "category": {
+        "Scale": 1,
+        "Database": 1,
+        "Identity": 1,
+        "Security": 2,
+        "Local": 8,
+        "Queue": 12
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "ContosoUniversity.csproj",
+      "startingProject": true,
+      "issues": 6,
+      "storyPoints": 75,
+      "ruleInstances": [
+        {
+          "incidentId": "57b57dac-71fd-4e04-8e32-324aac5b00f0",
+          "ruleId": "Scale.0001",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "ContosoUniversity.csproj",
+            "snippet": "Found 16 files matching the rule:\r\n\r\nContent\\bootstrap.css\r\nContent\\bootstrap.min.css\r\nContent\\Site.css\r\nfavicon.ico\r\nScripts\\bootstrap.js\r\nScripts\\bootstrap.min.js\r\nScripts\\jquery-3.4.1.js\r\nScripts\\jquery-3.4.1.min.js\r\nScripts\\jquery.validate.js\r\nScripts\\jquery.validate.min.js\r\nScripts\\jquery.validate.unobtrusive.js\r\nScripts\\jquery.validate.unobtrusive.min.js\r\nScripts\\modernizr-2.6.2.js\r\nScripts\\respond.js\r\nScripts\\respond.min.js\r\nUploads\\TeachingMaterials\\course_1045_2b7f6522-b007-4c5d-9304-57b3ef4a182c.jpg\r\n"
+          }
+        },
+        {
+          "incidentId": "b953d8ce-500b-4985-9d27-90ae1b230475",
+          "ruleId": "Database.0002",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Web.config",
+            "snippet": "\u003Cadd name=\u0022DefaultConnection\u0022 connectionString=\u0022Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=ContosoUniversityNoAuthEFCore;Integrated Security=True;MultipleActiveResultSets=True\u0022 /\u003E"
+          }
+        },
+        {
+          "incidentId": "a816ba9c-6207-49c1-a810-4f2d61d389b0",
+          "ruleId": "Identity.0002",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Web.config",
+            "snippet": "\u003Cadd name=\u0022DefaultConnection\u0022 connectionString=\u0022Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=ContosoUniversityNoAuthEFCore;Integrated Security=True;MultipleActiveResultSets=True\u0022 /\u003E"
+          }
+        },
+        {
+          "incidentId": "bc55505f-b6ab-458c-a95b-b1e0d58ad99b",
+          "ruleId": "Security.0002",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Web.config",
+            "snippet": "\u003CappSettings\u003E\r\n  \u003Cadd key=\u0022webpages:Version\u0022 value=\u00223.0.0.0\u0022 /\u003E\r\n  \u003Cadd key=\u0022webpages:Enabled\u0022 value=\u0022false\u0022 /\u003E\r\n  \u003Cadd key=\u0022ClientValidationEnabled\u0022 value=\u0022true\u0022 /\u003E\r\n  \u003Cadd key=\u0022UnobtrusiveJavaScriptEnabled\u0022 value=\u0022true\u0022 /\u003E\r\n  \u003C!-- Notification Queue Configuration --\u003E\r\n  \u003Cadd key=\u0022NotificationQueuePath\u0022 value=\u0022.\\Private$\\ContosoUniversityNotifications\u0022 /\u003E\r\n\u003C/appSettings\u003E"
+          }
+        },
+        {
+          "incidentId": "95d152b9-307f-451d-bf07-749d134628ac",
+          "ruleId": "Security.0002",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Web.config",
+            "snippet": "\u003CconnectionStrings\u003E\r\n  \u003Cadd name=\u0022DefaultConnection\u0022 connectionString=\u0022Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=ContosoUniversityNoAuthEFCore;Integrated Security=True;MultipleActiveResultSets=True\u0022 /\u003E\r\n\u003C/connectionStrings\u003E"
+          }
+        },
+        {
+          "incidentId": "a115b9d1-df95-41fd-9879-44779a1bdd80",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "Directory.CreateDirectory(uploadsPath);",
+            "label": "System.IO.Directory",
+            "line": 161,
+            "column": 28
+          }
+        },
+        {
+          "incidentId": "f5f26714-1256-469e-adf4-792a90f71537",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "Directory.CreateDirectory(uploadsPath);",
+            "label": "System.IO.Directory",
+            "line": 78,
+            "column": 28
+          }
+        },
+        {
+          "incidentId": "bf1abcaa-a261-49bf-bfd6-2ac4bae2af14",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "if (!Directory.Exists(uploadsPath))\r\n                        {\r\n                            Directory.CreateDirectory(uploadsPath);\r\n                        }",
+            "label": "System.IO.Directory",
+            "line": 159,
+            "column": 29
+          }
+        },
+        {
+          "incidentId": "3b286a62-39e7-4870-9379-8a35e9352048",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "if (!Directory.Exists(uploadsPath))\r\n                        {\r\n                            Directory.CreateDirectory(uploadsPath);\r\n                        }",
+            "label": "System.IO.Directory",
+            "line": 76,
+            "column": 29
+          }
+        },
+        {
+          "incidentId": "e6d23ed2-f5bb-4d7d-8f7c-e3f5a26f46d8",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "if (System.IO.File.Exists(filePath))\r\n                {\r\n                    try\r\n                    {\r\n                        System.IO.File.Delete(filePath);\r\n                    }\r\n                    catch (Exception ex)\r\n                    {\r\n                        // Log the error but don\u0027t prevent deletion of the course\r\n                        // In a production application, you would log this error properly\r\n                        System.Diagnostics.Debug.WriteLine($\u0022Error deleting file: {ex.Message}\u0022);\r\n                    }\r\n                }",
+            "label": "System.IO.File",
+            "line": 229,
+            "column": 30
+          }
+        },
+        {
+          "incidentId": "24bffb04-abe0-47e5-9178-b139f437fd6f",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "if (System.IO.File.Exists(oldFilePath))\r\n                            {\r\n                                System.IO.File.Delete(oldFilePath);\r\n                            }",
+            "label": "System.IO.File",
+            "line": 172,
+            "column": 42
+          }
+        },
+        {
+          "incidentId": "f4f04739-6f8b-463d-938f-48aa5b3249ce",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "System.IO.File.Delete(filePath);",
+            "label": "System.IO.File",
+            "line": 233,
+            "column": 34
+          }
+        },
+        {
+          "incidentId": "1e40c3bd-d169-4352-982f-fc798d22dc83",
+          "ruleId": "Local.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Controllers\\CoursesController.cs",
+            "snippet": "System.IO.File.Delete(oldFilePath);",
+            "label": "System.IO.File",
+            "line": 174,
+            "column": 42
+          }
+        },
+        {
+          "incidentId": "c0d85888-be4f-4fab-8ea3-0a9067c22b03",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "_queue = MessageQueue.Create(_queuePath);",
+            "label": "System.Messaging.MessageQueue",
+            "line": 21,
+            "column": 25
+          }
+        },
+        {
+          "incidentId": "1ee03dd7-998a-4e96-8546-5d2286586d68",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "_queue = new MessageQueue(_queuePath);",
+            "label": "System.Messaging.MessageQueue",
+            "line": 26,
+            "column": 29
+          }
+        },
+        {
+          "incidentId": "40fffb82-9217-4a0f-955c-969a5eba43aa",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "_queue.Formatter = new XmlMessageFormatter(new Type[] { typeof(string) });",
+            "label": "System.Messaging.XmlMessageFormatter",
+            "line": 30,
+            "column": 35
+          }
+        },
+        {
+          "incidentId": "1a7b2783-3f87-49e6-98ed-e7401403b869",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "_queue.SetPermissions(\u0022Everyone\u0022, MessageQueueAccessRights.FullControl);",
+            "label": "System.Messaging.MessageQueueAccessRights",
+            "line": 22,
+            "column": 50
+          }
+        },
+        {
+          "incidentId": "eadb1046-50a1-450e-b47c-f4dc7acb9ed0",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "if (!MessageQueue.Exists(_queuePath))\r\n            {\r\n                _queue = MessageQueue.Create(_queuePath);\r\n                _queue.SetPermissions(\u0022Everyone\u0022, MessageQueueAccessRights.FullControl);\r\n            }\r\n            else\r\n            {\r\n                _queue = new MessageQueue(_queuePath);\r\n            }",
+            "label": "System.Messaging.MessageQueue",
+            "line": 19,
+            "column": 17
+          }
+        },
+        {
+          "incidentId": "f458619f-2c28-4fee-9167-b1a969fd5556",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "MessageQueue",
+            "label": "System.Messaging.MessageQueue",
+            "line": 11,
+            "column": 25
+          }
+        },
+        {
+          "incidentId": "0d1c5b96-5304-416a-b54a-c104e7aac29b",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "try\r\n            {\r\n                var message = _queue.Receive(TimeSpan.FromSeconds(1));\r\n                var jsonContent = message.Body.ToString();\r\n                return JsonConvert.DeserializeObject\u003CNotification\u003E(jsonContent);\r\n            }\r\n            catch (MessageQueueException ex) when (ex.MessageQueueErrorCode == MessageQueueErrorCode.IOTimeout)\r\n            {\r\n                // No messages available\r\n                return null;\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                System.Diagnostics.Debug.WriteLine($\u0022Failed to receive notification: {ex.Message}\u0022);\r\n                return null;\r\n            }",
+            "label": "System.Messaging.MessageQueueException",
+            "line": 77,
+            "column": 19
+          }
+        },
+        {
+          "incidentId": "6c832e4d-206d-41f3-8839-5081c3b94130",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "try\r\n            {\r\n                var message = _queue.Receive(TimeSpan.FromSeconds(1));\r\n                var jsonContent = message.Body.ToString();\r\n                return JsonConvert.DeserializeObject\u003CNotification\u003E(jsonContent);\r\n            }\r\n            catch (MessageQueueException ex) when (ex.MessageQueueErrorCode == MessageQueueErrorCode.IOTimeout)\r\n            {\r\n                // No messages available\r\n                return null;\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                System.Diagnostics.Debug.WriteLine($\u0022Failed to receive notification: {ex.Message}\u0022);\r\n                return null;\r\n            }",
+            "label": "System.Messaging.MessageQueueErrorCode",
+            "line": 77,
+            "column": 79
+          }
+        },
+        {
+          "incidentId": "0c85423b-7424-43be-a045-693ea810ce9e",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "var message = _queue.Receive(TimeSpan.FromSeconds(1));",
+            "label": "System.Messaging.Message",
+            "line": 73,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "2366f458-2d52-4625-b513-234a7a65954d",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "var message = new Message(jsonMessage)\r\n                {\r\n                    Label = $\u0022{entityType} {operation}\u0022,\r\n                    Priority = MessagePriority.Normal\r\n                };",
+            "label": "System.Messaging.Message",
+            "line": 54,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "26cbcd58-1a98-431f-9cc2-351d7e8e6de8",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "var message = new Message(jsonMessage)\r\n                {\r\n                    Label = $\u0022{entityType} {operation}\u0022,\r\n                    Priority = MessagePriority.Normal\r\n                };",
+            "label": "System.Messaging.Message",
+            "line": 54,
+            "column": 34
+          }
+        },
+        {
+          "incidentId": "6ce19cdc-eac3-4c0c-a000-0c8dac955dcb",
+          "ruleId": "Queue.0003",
+          "projectPath": "ContosoUniversity.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "Services\\NotificationService.cs",
+            "snippet": "var message = new Message(jsonMessage)\r\n                {\r\n                    Label = $\u0022{entityType} {operation}\u0022,\r\n                    Priority = MessagePriority.Normal\r\n                };",
+            "label": "System.Messaging.MessagePriority",
+            "line": 57,
+            "column": 31
+          }
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "Scale.0001": {
+      "id": "Scale.0001",
+      "description": "Static content detected.\n\nYour current approach of serving static content directly might lead to increased costs, performance issues, maintenance challenges (requiring application redeployment for content changes), and security risks.\n\nConsider moving static content to Azure Blob Storage and adding Azure CDN.",
+      "label": "Static content detected",
+      "severity": "Optional",
+      "effort": 3,
+      "links": [
+        {
+          "title": "Azure Blob Storage",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250574"
+        },
+        {
+          "title": "Azure CDN",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2250392"
+        }
+      ]
+    },
+    "Database.0002": {
+      "id": "Database.0002",
+      "description": "SQL database connection detected.\n\nEnsure the database is available/reachable on Azure.\n\nIf it is not, there are multiple ways you can move your data to Azure:\n    1. Migrate to Azure SQL Database.\n    2. Consider Azure SQL Managed Instance if you need features that are not available in Azure SQL Database and you don\u2019t want to use a VM.\n    3. Migrate your database servers directly to SQL Server on Azure VMs.\n\nTo assess database migration effort, you can use Azure Migrate tool, see the link below.",
+      "label": "SQL database connection detected",
+      "severity": "Potential",
+      "effort": 3,
+      "links": [
+        {
+          "title": "Migrate SQL Server database to Azure",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2251731"
+        },
+        {
+          "title": "Azure SQL Managed Instance",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2251613"
+        },
+        {
+          "title": "Azure Migrate",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2252410"
+        }
+      ]
+    },
+    "Identity.0002": {
+      "id": "Identity.0002",
+      "description": "Your app is using windows authentication which is not supported on Azure App Service, Azure Container Apps and Azure Kubernetes Service.\n\nAzure App Service provides built-in authentication and authorization capabilities, so you can sign in users and access data by writing minimal or no code in your web app.\n\nFollow the link below for more information.\u0022",
+      "label": "Windows authentication detected",
+      "severity": "Mandatory",
+      "effort": 3,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242883"
+        }
+      ]
+    },
+    "Security.0002": {
+      "id": "Security.0002",
+      "description": "Connection strings without configuration builders detected.  \n\n Keeping connection strings directly in the app is not the best practice and might introduce security risks, increased maintenance, scalability challenges or compliance standards (such as PCI DSS, GDPR, etc.). \n\n Instead, it is recommended to use configuration builders to get secrets from secure sources in Azure environment.",
+      "label": "Connection strings without configuration builders detected",
+      "severity": "Optional",
+      "effort": 3,
+      "links": [
+        {
+          "title": "Configuration builders",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250915"
+        },
+        {
+          "title": "Storing application secrets",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250916"
+        },
+        {
+          "title": "Centralized app configuration and security",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250733"
+        }
+      ]
+    },
+    "Local.0003": {
+      "id": "Local.0003",
+      "description": "Your application has local or network IO operations.\n\nIO operations outside of the application folder might not be available on Azure App Service. Review and ensure IO APIs are attempting to access paths that will be available when your app is running on App Service sandbox. If you choose the containerized hosting option, your scenario still might be broken or have scalability issues.\n\nPossible solutions:\n    1. Files that the application needs can be deployed with the application or put in Azure Storage. You can use Azure Storage File Shares as a drop-in replacement for on-premises file share.\n    2. Other services that the application depends on might need to be migrated to Azure, this way you will get the benefit of lower latency in the cloud.\n    3. If your application needs to depend on services that run on-premise, you can connect your Azure and local networks with ExpressRoute, Hybrid Connections, or VPN solutions.",
+      "label": "Local or network IO operations detected",
+      "severity": "Potential",
+      "effort": 3,
+      "links": [
+        {
+          "title": "Azure file share",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242591"
+        },
+        {
+          "title": "ExpressRoute",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2250577"
+        },
+        {
+          "title": "Hybrid Connections",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242588"
+        },
+        {
+          "title": "Connect an on-prem network",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242591"
+        },
+        {
+          "title": "Design to scale out",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2251007"
+        }
+      ]
+    },
+    "Queue.0003": {
+      "id": "Queue.0003",
+      "description": "You are using MSMQ that is not currently supported in Azure App and containerized app. You can use Azure Queue Storage or Service Bus queues instead of MSMQ. Another option is to run MSMQ in Azure Virtual Machines.",
+      "label": "MSMQ usage is detected",
+      "severity": "Mandatory",
+      "effort": 3,
+      "links": [
+        {
+          "title": "Azure Queue Storage",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2242589"
+        },
+        {
+          "title": "Service Bus queues",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2243266"
+        },
+        {
+          "title": "Comparison of Azure Queue Storage and Service Bus queue",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2249263"
+        },
+        {
+          "title": "Running MSMQ in Azure VM",
+          "url": "https://go.microsoft.com/fwlink/?LinkID=2249370"
+        }
+      ]
+    }
+  }
+}
